@@ -1,5 +1,1 @@
-"# Balatro-Stat-Compiler" 
-"# Balatro-Stat-Compiler" 
-"# Balatro-Stat-Compiler" 
-"# Balatro-Stat-Compiler" 
-"# Balatro-Stat-Compiler" 
+Balatro Stat Compiler is a tool designed to show gameplay statistics found within the save files but not normally shown in game. Additionally, this tool offers the ability to compile data between multiple saves in order to view total statistics, something not normally done by other similar applications. To get started, refer to: https://github.com/jrw567/Balatro-Stat-Compiler/wiki/Usage
