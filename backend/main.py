@@ -8,8 +8,13 @@ CORS(app)
 
 @app.route("/", methods=["POST"])
 def readFile():
+    if(request.files.get("profile").filename != "profile.jkr"):
+        return jsonify({"message": "Please upload a profile.jkr file"}), 400
     file_data = request.files.get("profile").read()
     file_data = zlib.decompress(file_data, wbits= -zlib.MAX_WBITS).decode("utf-8")
+    if "career_stats" not in file_data or "joker_usage" not in file_data or "voucher_usage" not in file_data or "challenge_progress" not in file_data or "consumeable_usage" not in file_data:
+        return jsonify({"message": "profile.jkr file missing required information"}), 400
+    
     file_data = file_data.replace("[", "")
     file_data = file_data.replace("]", "")
     file_data = file_data.replace("=", ":")
@@ -26,7 +31,7 @@ def readFile():
     file_data = file_data.replace("8:", '"gold_stake":')
 
     file_data = json.loads(file_data)
-    print(file_data)
+    # print(file_data["career_stats"])
     return jsonify({"message": "File Uploaded Successfully"}), 200
 
 if __name__ == "__main__":
