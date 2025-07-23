@@ -63,3 +63,44 @@ class Joker(db.Model):
         return {
             self.joker_name : [{"rounds": self.joker_count, "wins": self.joker_wins, "losses": self.joker_losses}]
         }
+    
+class Consumeable(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+
+    file_num = db.Column(db.Integer, unique=False, nullable=False)
+
+    consumeable_name = db.Column(db.String(30), unique=False, nullable=False)
+    consumeable_count = db.Column(db.Integer, unique=False, nullable=False)
+
+    def to_json(self):
+        return {
+            self.consumeable_name: [{"count": self.consumeable_count}]
+        }
+    
+class Voucher(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+
+    file_num = db.Column(db.Integer, unique=False, nullable=False)
+
+    voucher_name = db.Column(db.String(30), unique=False, nullable=False)
+    voucher_count = db.Column(db.Integer, unique=False, nullable=False)
+
+    def to_json(self):
+        return {
+            self.voucher_name: [{"count": self.voucher_count}]
+        }
+    
+class Deck(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+
+    file_num = db.Column(db.Integer, unique=False, nullable=False)
+
+    deck_name = db.Column(db.String(30), unique=False, nullable=False)
+    deck_wins = db.Column(db.Integer, unique=False, nullable=False)
+    deck_losses = db.Column(db.Integer, unique=False, nullable=False)
+
+    def to_json(self):
+        return {
+            self.deck_name: [{"wins": self.deck_wins, "losses": self.deck_losses}]
+        }
+
