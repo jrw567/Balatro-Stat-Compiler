@@ -14,13 +14,14 @@ def readFile():
     if "career_stats" not in file_data or "joker_usage" not in file_data or "voucher_usage" not in file_data or "challenge_progress" not in file_data or "consumeable_usage" not in file_data:
         return jsonify({"message": "profile.jkr file missing required information"}), 400
     
+    #removes unecessary characters to enable json conversion
     file_data = file_data.replace("[", "")
     file_data = file_data.replace("]", "")
     file_data = file_data.replace("=", ":")
     file_data = file_data.replace(",}", "}")
     file_data = file_data.replace("return ", "")
 
-    # want to replace this to read in wins and losses for each joker and combine each stake into a total number of wins and losses
+    # replaces difficulty naming convention in save file to a readable format to enable json conversion
     file_data = file_data.replace("1:", '"white_stake":')
     file_data = file_data.replace("2:", '"red_stake":')
     file_data = file_data.replace("3:", '"green_stake":')
@@ -31,6 +32,17 @@ def readFile():
     file_data = file_data.replace("8:", '"gold_stake":')
 
     file_data = json.loads(file_data)
+    for joker in file_data["joker_usage"]:
+        wins = 0
+        losses = 0
+        for stake in file_data["joker_usage"][joker]["wins"]:
+            wins += file_data["joker_usage"][joker]["wins"][stake]
+        
+        for stake in file_data["joker_usage"][joker]["losses"]:
+            losses += file_data["joker_usage"][joker]["losses"][stake]
+        file_data["joker_usage"][joker]["wins"] = wins
+        file_data["joker_usage"][joker]["losses"] = losses
+
     print(file_data)
     return jsonify({"message": "File Uploaded Successfully"}), 200
 
