@@ -1,6 +1,6 @@
 from flask import request, jsonify
 from config import app, db
-from models import SaveFile
+from models import Career,Joker
 import zlib, json
 
 @app.route("/", methods=["POST"])
