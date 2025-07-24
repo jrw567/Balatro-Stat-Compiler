@@ -56,7 +56,7 @@ def readFile(file_number):
         file_data["deck_usage"][deck]["losses"] = losses
 
     career = file_data["career_stats"]
-    print(file_data["name"])
+    
     career_stats = Career(
         file_num = file_number,
         file_name = file_data["name"],
@@ -79,10 +79,46 @@ def readFile(file_number):
         playing_cards_bought = career["c_playing_cards_bought"]
     )
 
-    db.session.add(career_stats)
-    db.session.commit()
+    # db.session.add(career_stats)
+    # db.session.commit()
 
-    # print(file_data)
+    for joker in file_data["joker_usage"]:
+        new_joker = Joker(
+            file_num = file_number,
+            joker_name = joker,
+            joker_wins =  file_data["joker_usage"][joker]["wins"],
+            joker_losses = file_data["joker_usage"][joker]["losses"])
+        # db.session.add(new_joker)
+        # db.session.commit()
+
+    for consumeable in file_data["consumeable_usage"]:
+        new_consumeable = Consumeable(
+            file_num = file_number,
+            consumeable_name = consumeable,
+            consumeable_count = file_data["consumeable_usage"][consumeable]["count"]
+        )
+        # db.session.add(new_consumeable)
+        # db.session.commit()
+
+    for voucher in file_data["voucher_usage"]:
+        new_voucher = Voucher(
+            file_num = file_number,
+            voucher_name = voucher,
+            voucher_count = file_data["voucher_usage"][voucher]["count"]
+        )
+        # db.session.add(new_voucher)
+        # db.session.commit()
+
+    for deck in file_data["deck_usage"]:
+        new_deck = Deck(
+            file_num = file_number,
+            deck_name = deck,
+            deck_wins =  file_data["deck_usage"][deck]["wins"],
+            deck_losses = file_data["deck_usage"][deck]["losses"])
+        # db.session.add(new_deck)
+        # db.session.commit()
+
+
     return jsonify({"message": "File Uploaded Successfully"}), 200
 
 if __name__ == "__main__":
