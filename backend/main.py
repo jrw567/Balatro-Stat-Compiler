@@ -57,6 +57,8 @@ def readFile(file_number):
 
     career = file_data["career_stats"]
     
+    # when reading check to see if something exists in file num 4 (total) if not create it otherwise add the values to it
+
     career_stats = Career(
         file_num = file_number,
         file_name = file_data["name"],
@@ -79,17 +81,18 @@ def readFile(file_number):
         playing_cards_bought = career["c_playing_cards_bought"]
     )
 
-    # db.session.add(career_stats)
-    # db.session.commit()
+    db.session.add(career_stats)
+    db.session.commit()
 
     for joker in file_data["joker_usage"]:
         new_joker = Joker(
             file_num = file_number,
             joker_name = joker,
+            joker_count = file_data["joker_usage"][joker]["count"],
             joker_wins =  file_data["joker_usage"][joker]["wins"],
             joker_losses = file_data["joker_usage"][joker]["losses"])
-        # db.session.add(new_joker)
-        # db.session.commit()
+        db.session.add(new_joker)
+        db.session.commit()
 
     for consumeable in file_data["consumeable_usage"]:
         new_consumeable = Consumeable(
@@ -97,8 +100,8 @@ def readFile(file_number):
             consumeable_name = consumeable,
             consumeable_count = file_data["consumeable_usage"][consumeable]["count"]
         )
-        # db.session.add(new_consumeable)
-        # db.session.commit()
+        db.session.add(new_consumeable)
+        db.session.commit()
 
     for voucher in file_data["voucher_usage"]:
         new_voucher = Voucher(
@@ -106,8 +109,8 @@ def readFile(file_number):
             voucher_name = voucher,
             voucher_count = file_data["voucher_usage"][voucher]["count"]
         )
-        # db.session.add(new_voucher)
-        # db.session.commit()
+        db.session.add(new_voucher)
+        db.session.commit()
 
     for deck in file_data["deck_usage"]:
         new_deck = Deck(
@@ -115,11 +118,34 @@ def readFile(file_number):
             deck_name = deck,
             deck_wins =  file_data["deck_usage"][deck]["wins"],
             deck_losses = file_data["deck_usage"][deck]["losses"])
-        # db.session.add(new_deck)
-        # db.session.commit()
-
+        db.session.add(new_deck)
+        db.session.commit()
 
     return jsonify({"message": "File Uploaded Successfully"}), 200
+
+@app.route("/get_career/<int:file_number>", methods=["GET"])
+def getCareerStats(file_number):
+    return file_number
+
+@app.route("/get_jokers/<int:file_number>", methods=["GET"])
+def getJokers(file_number):
+    return file_number
+
+@app.route("/get_consumeables/<int:file_number>", methods=["GET"])
+def getConsumeables(file_number):
+    return file_number
+
+@app.route("/get_vouchers/<int:file_number>", methods=["GET"])
+def getVouchers(file_number):
+    return file_number
+
+@app.route("/get_decks/<int:file_number>", methods=["GET"])
+def getDecks(file_number):
+    return file_number
+
+@app.route("/delete_file/<int:file_number>", methods=["DELETE"])
+def deleteFile(file_number):
+    return file_number
 
 if __name__ == "__main__":
     with app.app_context():
