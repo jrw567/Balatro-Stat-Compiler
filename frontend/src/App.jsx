@@ -30,9 +30,8 @@ function App() {
   }, [])
 
   useEffect (() => {
-    console.log(firstRender)
     if(!firstRender)
-      setDisplayList("Hello")
+      setDisplayList(state)
   }, [state])
 
   
@@ -64,7 +63,7 @@ function App() {
       <button id='remove3'>Remove</button>
 
       <div>
-        <p>{displayList}</p>
+        {/* create components here pass display list as prop */}
       </div>
     </>
     

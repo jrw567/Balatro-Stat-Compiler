@@ -1,6 +1,6 @@
 from flask import request, jsonify
 from config import app, db
-from models import Career,Joker,Consumeable,Voucher,Hands,Deck
+from models import Career,Joker,Consumable,Voucher,Hands,Deck
 import zlib, json
 
 @app.route("/upload_file/<int:file_number>", methods=["POST"])
@@ -94,13 +94,13 @@ def readFile(file_number):
         db.session.add(new_joker)
         # db.session.commit()
 
-    for consumeable in file_data["consumeable_usage"]:
-        new_consumeable = Consumeable(
+    for consumable in file_data["consumeable_usage"]:
+        new_consumable = Consumable(
             file_num = file_number,
-            consumeable_name = consumeable,
-            consumeable_count = file_data["consumeable_usage"][consumeable]["count"]
+            consumable_name = consumable,
+            consumable_count = file_data["consumeable_usage"][consumable]["count"]
         )
-        db.session.add(new_consumeable)
+        db.session.add(new_consumable)
         # db.session.commit()
 
     for voucher in file_data["voucher_usage"]:
@@ -130,10 +130,13 @@ def readFile(file_number):
         # db.session.commit()
     db.session.commit()
     return jsonify({"message": "File Uploaded Successfully"}), 200
-
+# probably can converth this into a generic function how the get request is /get_<str:item_type>
 @app.route("/get_career/<int:file_number>", methods=["GET"])
 def getCareerStats(file_number):
-    return "hello"
+    stats_json = []
+    for x in db.session.query(Career).filter(Career.file_num == file_number):
+        stats_json.append(x.to_json())
+    return stats_json
 
 @app.route("/get_jokers/<int:file_number>", methods=["GET"])
 def getJokers(file_number):
@@ -163,7 +166,7 @@ def remove_file(file_number):
     for x in db.session.query(Joker).filter(Joker.file_num == file_number):
         db.session.delete(x)
 
-    for x in db.session.query(Consumeable).filter(Consumeable.file_num == file_number):
+    for x in db.session.query(Consumable).filter(Consumable.file_num == file_number):
         db.session.delete(x)
 
     for x in db.session.query(Voucher).filter(Voucher.file_num == file_number):

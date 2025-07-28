@@ -27,7 +27,7 @@ class Career(db.Model):
     
     def to_json(self):
         return {
-            "career_stats" : [{
+            "career_stats" : {
                 "file_name": self.file_name,
                 "cards_discarded": self.cards_discarded,
                 "hands_played": self.hands_played,
@@ -45,8 +45,8 @@ class Career(db.Model):
                 "rounds": self.rounds,
                 "jokers_sold": self.jokers_sold,
                 "face_cards_played": self.face_cards_played,
-                "playing_cards_bought": self.playing_cards_bought
-            }]
+                "playing_cards_bought": self.playing_cards_bought,
+            }
         }
 
 class Joker(db.Model):
@@ -61,20 +61,20 @@ class Joker(db.Model):
 
     def to_json(self):
         return {
-            self.joker_name : [{"rounds": self.joker_count, "wins": self.joker_wins, "losses": self.joker_losses}]
+            self.joker_name : {"rounds": self.joker_count, "wins": self.joker_wins, "losses": self.joker_losses}
         }
     
-class Consumeable(db.Model):
+class Consumable(db.Model):
     id = db.Column(db.Integer, primary_key=True)
 
     file_num = db.Column(db.Integer, unique=False, nullable=False)
 
-    consumeable_name = db.Column(db.String(30), unique=False, nullable=False)
-    consumeable_count = db.Column(db.Integer, unique=False, nullable=False)
+    consumable_name = db.Column(db.String(30), unique=False, nullable=False)
+    consumable_count = db.Column(db.Integer, unique=False, nullable=False)
 
     def to_json(self):
         return {
-            self.consumeable_name: [{"count": self.consumeable_count}]
+            self.consumable_name: {"count": self.consumable_count}
         }
     
 class Voucher(db.Model):
@@ -87,7 +87,7 @@ class Voucher(db.Model):
 
     def to_json(self):
         return {
-            self.voucher_name: [{"count": self.voucher_count}]
+            self.voucher_name: {"count": self.voucher_count}
         }
     
 class Hands(db.Model):
@@ -100,7 +100,7 @@ class Hands(db.Model):
 
     def to_json(self):
         return {
-            self.hand_name: [{"count": self.hand_count}]
+            self.hand_name: {"count": self.hand_count}
         }
     
 class Deck(db.Model):
@@ -114,6 +114,6 @@ class Deck(db.Model):
 
     def to_json(self):
         return {
-            self.deck_name: [{"wins": self.deck_wins, "losses": self.deck_losses}]
+            self.deck_name: {"wins": self.deck_wins, "losses": self.deck_losses}
         }
 
