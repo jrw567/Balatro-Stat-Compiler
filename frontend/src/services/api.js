@@ -1,27 +1,12 @@
-export const uploadFile1 = async data => {
+export const uploadFile = async (previous, data) => {
     if(data.entries().next().value[1].size != 0){
-        let response = await fetch(`http://127.0.0.1:5000/upload_file/1`, {method: "POST", body: data}).then((rsp) => rsp.json());
-        document.getElementById("file1").innerHTML = response.message;
+        let entries = [...data.entries()]
+        let file_number = entries[1][1]
+        console.log(file_number)
+        let response = await fetch(`http://127.0.0.1:5000/upload_file/${file_number}`, {method: "POST", body: data}).then((rsp) => rsp.json());
+        document.getElementById(`file${file_number}`).innerHTML = response.message;
     } else {
-        document.getElementById("file1").innerHTML = "Please upload a profile.jkr file";
-    }
-}
-
-export const uploadFile2 = async data => {
-    if(data.entries().next().value[1].size != 0){
-        let response = await fetch(`http://127.0.0.1:5000/upload_file/2`, {method: "POST", body: data}).then((rsp) => rsp.json());
-        document.getElementById("file2").innerHTML = response.message;
-    } else {
-        document.getElementById("file2").innerHTML = "Please upload a profile.jkr file";
-    }
-}
-
-export const uploadFile3 = async data => {
-    if(data.entries().next().value[1].size != 0){
-        let response = await fetch(`http://127.0.0.1:5000/upload_file/3`, {method: "POST", body: data}).then((rsp) => rsp.json());
-        document.getElementById("file3").innerHTML = response.message;
-    } else {
-        document.getElementById("file3").innerHTML = "Please upload a profile.jkr file";
+        document.getElementById(`file1`).innerHTML = "Please upload a profile.jkr file";
     }
 }
 
@@ -30,5 +15,5 @@ export const removeFile = async file_number => {
 }
 
 export const getList = async (file_number, item_type) => {
-    await fetch(`http://127.0.0.1:5000/get_${item_type}/${file_number}`, {method: "GET"})
+    let response = await fetch(`http://127.0.0.1:5000/get_${item_type}/${file_number}`, {method: "GET"})
 }
