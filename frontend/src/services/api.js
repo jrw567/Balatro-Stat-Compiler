@@ -24,3 +24,11 @@ export const uploadFile3 = async data => {
         document.getElementById("file3").innerHTML = "Please upload a profile.jkr file";
     }
 }
+
+export const removeFile = async file_number => {
+    await fetch(`http://127.0.0.1:5000/remove_file/${file_number}`, {method: "DELETE"})
+}
+
+export const getList = async (file_number, item_type) => {
+    await fetch(`http://127.0.0.1:5000/get_${item_type}/${file_number}`, {method: "GET"})
+}

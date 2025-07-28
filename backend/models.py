@@ -90,6 +90,19 @@ class Voucher(db.Model):
             self.voucher_name: [{"count": self.voucher_count}]
         }
     
+class Hands(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+
+    file_num = db.Column(db.Integer, unique=False, nullable=False)
+
+    hand_name = db.Column(db.String(30), unique=False, nullable=False)
+    hand_count = db.Column(db.Integer, unique=False, nullable=False)
+
+    def to_json(self):
+        return {
+            self.hand_name: [{"count": self.hand_count}]
+        }
+    
 class Deck(db.Model):
     id = db.Column(db.Integer, primary_key=True)
 
