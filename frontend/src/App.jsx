@@ -1,13 +1,14 @@
 import { useEffect, useState, useActionState } from 'react'
 import './App.css'
 import { uploadFile, removeFile, getList } from './services/api'
+import DisplayList from './components/DisplayList';
 
 function App() {
   const [displayList, setDisplayList] = useState([]);
   const [displayItem, setDisplayItem] = useState("career");
   const [firstRender, setFirstRender] = useState(true);
 
-  const[state, formAction] = useActionState(uploadFile, undefined);
+  const[returnState, formAction] = useActionState(uploadFile, undefined);
 
   useEffect (() => {
     document.getElementById("fileForm1").addEventListener('formdata', (e) => {
@@ -31,13 +32,12 @@ function App() {
 
   useEffect (() => {
     if(!firstRender)
-      setDisplayList(state)
-  }, [state])
+      setDisplayList(returnState)
+  }, [returnState])
 
   
   return (
     <>
-    {/* unhappy with this implementation will make generic upload file */}
       <form action={formAction} id="fileForm1">
         <input type="file" name="profile" accept=".jkr"/>
         <input type="submit" value={"Upload file"}/>
@@ -62,9 +62,7 @@ function App() {
       </form>
       <button id='remove3'>Remove</button>
 
-      <div>
-        {/* create components here pass display list as prop */}
-      </div>
+      <DisplayList list={displayList} item={displayItem}/>
     </>
     
   )

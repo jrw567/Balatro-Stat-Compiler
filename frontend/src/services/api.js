@@ -3,7 +3,7 @@ export const uploadFile = async (previous, data) => {
         let entries = [...data.entries()]
         let file_number = entries[1][1]
         let item_type = entries[2][1]
-        let response = await fetch(`http://127.0.0.1:5000/upload_file/${file_number}`, {method: "POST", body: data}).then((rsp) => rsp.json()).then((json) => json);
+        let response = await fetch(`http://127.0.0.1:5000/upload_file/${file_number}`, {method: "POST", body: data}).then((rsp) => rsp.json());
         document.getElementById(`file${file_number}`).innerHTML = response.message;
         return getList(file_number, item_type) //will want to change this to file_number 4
     } else {

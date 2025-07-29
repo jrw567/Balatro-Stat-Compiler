@@ -27,7 +27,7 @@ class Career(db.Model):
     
     def to_json(self):
         return {
-            "career_stats" : {
+            # "career_stats" : {
                 "file_name": self.file_name,
                 "cards_discarded": self.cards_discarded,
                 "hands_played": self.hands_played,
@@ -46,7 +46,7 @@ class Career(db.Model):
                 "jokers_sold": self.jokers_sold,
                 "face_cards_played": self.face_cards_played,
                 "playing_cards_bought": self.playing_cards_bought,
-            }
+            # }
         }
 
 class Joker(db.Model):
