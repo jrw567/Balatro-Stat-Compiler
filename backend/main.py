@@ -9,13 +9,13 @@ def readFile(file_number):
     planet_list = ["ceres", "earth", "eris", "jupiter", "mars", "mercury", "neptune", "planet_x", "pluto", "saturn", "uranus", "venus"]
     spectral_list =["ankh", "aura", "black_hole", "cryptid", "deja_vu", "ectoplasm", "familiar", "grim", "hex", "immolate", "incantation", "medium", "ouija", "sigil", "talisman", "trance", "soul", "wraith"]
     if(request.files.get("profile").filename != "profile.jkr"):
-        return jsonify({"message": "Please upload a profile.jkr file"}), 400
+        return jsonify({"message": "Please upload a Balatro save file"}), 400
     
     file_data = request.files.get("profile").read()
     file_data = zlib.decompress(file_data, wbits= -zlib.MAX_WBITS).decode("utf-8")
 
     if "career_stats" not in file_data or "joker_usage" not in file_data or "voucher_usage" not in file_data or "challenge_progress" not in file_data or "consumeable_usage" not in file_data or "deck_usage" not in file_data:
-        return jsonify({"message": "profile.jkr file missing required information"}), 400
+        return jsonify({"message": "Save file missing required information"}), 400
     
     #removes unecessary characters to enable json conversion
     file_data = file_data.replace("[", "")
@@ -140,7 +140,7 @@ def readFile(file_number):
         db.session.add(new_deck)
         # db.session.commit()
     db.session.commit()
-    return jsonify({"message": "File Uploaded Successfully"}), 200
+    return jsonify({"message": "File uploaded successfully"}), 200
 
 @app.route("/get_<string:item_type>/<int:file_number>", methods=["GET"])
 def getStats(item_type,file_number):
@@ -173,9 +173,8 @@ def getStats(item_type,file_number):
         for x in db.session.query(Deck).filter(Deck.file_num == file_number):
             stats_json.append(x.to_json())
     else:
-        return jsonify({"message": "Invalid Stats Request"}), 400
+        return jsonify({"message": "Invalid stats request"}), 400
 
-    print(stats_json)
     return stats_json
 
 @app.route("/remove_file/<int:file_number>", methods=["DELETE"])
@@ -199,7 +198,7 @@ def remove_file(file_number):
         db.session.delete(x)
     
     db.session.commit()
-    return jsonify({"message": "File Removed Successfully"}), 200
+    return jsonify({"message": "File removed successfully"}), 200
 
 if __name__ == "__main__":
     with app.app_context():

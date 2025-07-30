@@ -1,16 +1,13 @@
-function DisplayList(displayList, displayItem){
-    if(displayList.list.length == 0)
+import Career from "./Career"
+import Hands from "./Hands"
+
+function DisplayList(props){
+    if(props.list.length == 0 || props.item == null)
         return <></>
-    let list = []
-    console.log(displayList.list)
-    //turn into career component
-    Object.keys(displayList.list[0]).forEach((key) =>{
-        list.push(key.replace(/_/g, " ") + ": " + displayList.list[0][key])
-    })
-    return list.map((e, index) => {
-        console.log(e)
-        return <p key={index} className="career">{e}</p>
-    })
+    if(props.item == "career")
+        return <Career list={props.list}/>
+    else if(props.item == "hands")
+        return <Hands list={props.list}/>
 }
 
 export default DisplayList

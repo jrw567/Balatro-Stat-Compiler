@@ -4,25 +4,25 @@ import { uploadFile, removeFile, getList } from './services/api'
 import DisplayList from './components/DisplayList';
 
 function App() {
-  const [displayList, setDisplayList] = useState([]);
-  const [displayItem, setDisplayItem] = useState("career");
-  const [firstRender, setFirstRender] = useState(true);
   const total = 1 //change to 4*******
 
-  const[returnState, formAction] = useActionState(uploadFile, undefined);
+  const [displayList, setDisplayList] = useState({list:[], item:"career"});
+  const [firstRender, setFirstRender] = useState(true);
 
+  const[returnState, formAction] = useActionState(uploadFile, undefined);
+  
   useEffect (() => {
     document.getElementById("fileForm1").addEventListener('formdata', (e) => {
       e.formData.append("fileNum", 1)
-      e.formData.append("itemType", displayItem)});
+      e.formData.append("itemType", displayList.item)});
 
     document.getElementById("fileForm2").addEventListener('formdata', (e) => {
       e.formData.append("fileNum", 2)
-      e.formData.append("itemType", displayItem)});
+      e.formData.append("itemType", displayList.item)});
 
     document.getElementById("fileForm3").addEventListener('formdata', (e) => {
       e.formData.append("fileNum", 3)
-      e.formData.append("itemType", displayItem)});
+      e.formData.append("itemType", displayList.item)});
 
     document.getElementById("remove1").addEventListener('click', () => {removeFile(1)});
     document.getElementById("remove2").addEventListener('click', () => {removeFile(2)});
@@ -33,14 +33,8 @@ function App() {
 
   useEffect (() => {
     if(!firstRender)
-      setDisplayList(returnState)
+      setDisplayList({list: returnState, item: displayList.item})
   }, [returnState])
-
-  useEffect (() => {
-    if(!firstRender)
-      setDisplayList(getList(total, displayItem))
-  }, [displayItem])
-
   
   return (
     <>
@@ -70,8 +64,8 @@ function App() {
       <br />
 
     <nav>
-      <button onClick={() => setDisplayItem("career")}>Career Stats</button>
-      <button>Hand Stats</button>
+      <button onClick={() => getList(total, "career").then((rsp) => setDisplayList({list: rsp, item:"career"}))}>Career Stats</button>
+      <button onClick={() => getList(total, "hands").then((rsp) => setDisplayList({list: rsp, item:"hands"}))}>Hand Stats</button>
       <button>Deck Stats</button>
       <button>Jokers</button>
       <button>Consumables</button>
@@ -81,7 +75,7 @@ function App() {
       <button>Vouchers</button>
     </nav>
       <br />
-      <DisplayList list={displayList} item={displayItem}/>
+      <DisplayList list={displayList.list} item={displayList.item}/>
     </>
     
   )

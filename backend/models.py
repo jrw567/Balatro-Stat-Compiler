@@ -101,7 +101,7 @@ class Hands(db.Model):
 
     def to_json(self):
         return {
-            self.hand_name: {"count": self.hand_count}
+            self.hand_name: self.hand_count
         }
     
 class Deck(db.Model):
