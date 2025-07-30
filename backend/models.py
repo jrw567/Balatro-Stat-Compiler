@@ -71,6 +71,7 @@ class Consumable(db.Model):
 
     consumable_name = db.Column(db.String(30), unique=False, nullable=False)
     consumable_count = db.Column(db.Integer, unique=False, nullable=False)
+    consumable_type = db.Column(db.String(30), unique=False, nullable=False)
 
     def to_json(self):
         return {

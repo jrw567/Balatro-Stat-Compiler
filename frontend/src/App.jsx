@@ -7,6 +7,7 @@ function App() {
   const [displayList, setDisplayList] = useState([]);
   const [displayItem, setDisplayItem] = useState("career");
   const [firstRender, setFirstRender] = useState(true);
+  const total = 1 //change to 4*******
 
   const[returnState, formAction] = useActionState(uploadFile, undefined);
 
@@ -35,6 +36,11 @@ function App() {
       setDisplayList(returnState)
   }, [returnState])
 
+  useEffect (() => {
+    if(!firstRender)
+      setDisplayList(getList(total, displayItem))
+  }, [displayItem])
+
   
   return (
     <>
@@ -61,7 +67,20 @@ function App() {
         <span id='file3'></span>
       </form>
       <button id='remove3'>Remove</button>
+      <br />
 
+    <nav>
+      <button onClick={() => setDisplayItem("career")}>Career Stats</button>
+      <button>Hand Stats</button>
+      <button>Deck Stats</button>
+      <button>Jokers</button>
+      <button>Consumables</button>
+      <button>Tarots</button>
+      <button>Planets</button>
+      <button>Spectrals</button>
+      <button>Vouchers</button>
+    </nav>
+      <br />
       <DisplayList list={displayList} item={displayItem}/>
     </>
     

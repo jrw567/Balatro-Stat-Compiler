@@ -5,6 +5,9 @@ import zlib, json
 
 @app.route("/upload_file/<int:file_number>", methods=["POST"])
 def readFile(file_number):
+    # tarot_list = ["chariot", "death", "devil", "emperor", "empress", "fool", "hanged_man", "hermit", "hierophant", "high_priestess", "judgement", "justice", "lovers", "magician", "moon", "strength", "temperance", "tower", "wheel_of_fortune", "world"]
+    planet_list = ["ceres", "earth", "eris", "jupiter", "mars", "mercury", "neptune", "planet_x", "pluto", "saturn", "uranus", "venus"]
+    spectral_list =["ankh", "aura", "black_hole", "cryptid", "deja_vu", "ectoplasm", "familiar", "grim", "hex", "immolate", "incantation", "medium", "ouija", "sigil", "talisman", "trance", "soul", "wraith"]
     if(request.files.get("profile").filename != "profile.jkr"):
         return jsonify({"message": "Please upload a profile.jkr file"}), 400
     
@@ -95,10 +98,18 @@ def readFile(file_number):
         # db.session.commit()
 
     for consumable in file_data["consumeable_usage"]:
+        c_type = ""
+        if consumable in planet_list:
+            c_type = "planet"
+        elif consumable in spectral_list:
+            c_type = "spectral"
+        else:
+            c_type = "tarot"
         new_consumable = Consumable(
             file_num = file_number,
             consumable_name = consumable,
-            consumable_count = file_data["consumeable_usage"][consumable]["count"]
+            consumable_count = file_data["consumeable_usage"][consumable]["count"],
+            consumable_type = c_type
         )
         db.session.add(new_consumable)
         # db.session.commit()
@@ -130,33 +141,42 @@ def readFile(file_number):
         # db.session.commit()
     db.session.commit()
     return jsonify({"message": "File Uploaded Successfully"}), 200
-# probably can converth this into a generic function how the get request is /get_<str:item_type>
-@app.route("/get_career/<int:file_number>", methods=["GET"])
-def getCareerStats(file_number):
+
+@app.route("/get_<string:item_type>/<int:file_number>", methods=["GET"])
+def getStats(item_type,file_number):
     stats_json = []
-    for x in db.session.query(Career).filter(Career.file_num == file_number):
-        stats_json.append(x.to_json())
+    if item_type == "career":
+        for x in db.session.query(Career).filter(Career.file_num == file_number):
+            stats_json.append(x.to_json())
+    elif item_type == "jokers":
+        for x in db.session.query(Joker).filter(Joker.file_num == file_number):
+            stats_json.append(x.to_json())
+    elif item_type == "consumables":
+        for x in db.session.query(Consumable).filter(Consumable.file_num == file_number):
+            stats_json.append(x.to_json())
+    elif item_type == "tarots":
+        for x in db.session.query(Consumable).filter(Consumable.file_num == file_number).filter(Consumable.consumable_type == "tarot"):
+            stats_json.append(x.to_json())
+    elif item_type == "planets":
+        for x in db.session.query(Consumable).filter(Consumable.file_num == file_number).filter(Consumable.consumable_type == "planet"):
+            stats_json.append(x.to_json())
+    elif item_type == "spectrals":
+        for x in db.session.query(Consumable).filter(Consumable.file_num == file_number).filter(Consumable.consumable_type == "spectral"):
+            stats_json.append(x.to_json())
+    elif item_type == "vouchers":
+        for x in db.session.query(Voucher).filter(Voucher.file_num == file_number):
+            stats_json.append(x.to_json())
+    elif item_type == "hands":
+        for x in db.session.query(Hands).filter(Hands.file_num == file_number):
+            stats_json.append(x.to_json())
+    elif item_type == "decks":
+        for x in db.session.query(Deck).filter(Deck.file_num == file_number):
+            stats_json.append(x.to_json())
+    else:
+        return jsonify({"message": "Invalid Stats Request"}), 400
+
+    print(stats_json)
     return stats_json
-
-@app.route("/get_jokers/<int:file_number>", methods=["GET"])
-def getJokers(file_number):
-    return "hello"
-
-@app.route("/get_consumeables/<int:file_number>", methods=["GET"])
-def getConsumeables(file_number):
-    return "hello"
-
-@app.route("/get_vouchers/<int:file_number>", methods=["GET"])
-def getVouchers(file_number):
-    return "hello"
-
-@app.route("/get_hands/<int:file_number>", methods=["GET"])
-def getHands(file_number):
-    return "hello"
-
-@app.route("/get_decks/<int:file_number>", methods=["GET"])
-def getDecks(file_number):
-    return "hello"
 
 @app.route("/remove_file/<int:file_number>", methods=["DELETE"])
 def remove_file(file_number):

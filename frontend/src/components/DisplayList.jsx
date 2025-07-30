@@ -2,6 +2,8 @@ function DisplayList(displayList, displayItem){
     if(displayList.list.length == 0)
         return <></>
     let list = []
+    console.log(displayList.list)
+    //turn into career component
     Object.keys(displayList.list[0]).forEach((key) =>{
         list.push(key.replace(/_/g, " ") + ": " + displayList.list[0][key])
     })
