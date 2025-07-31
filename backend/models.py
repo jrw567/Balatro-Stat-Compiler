@@ -27,26 +27,24 @@ class Career(db.Model):
     
     def to_json(self):
         return {
-            # "career_stats" : {
-                "file_name": self.file_name,
-                "cards_discarded": self.cards_discarded,
-                "hands_played": self.hands_played,
-                "dollars_earned": self.dollars_earned,
-                "cards_played": self.cards_played,
-                "planetarium_used": self.planetarium_used,
-                "wins": self.wins,
-                "shop_rerolls": self.shop_rerolls,
-                "losses": self.losses,
-                "tarots_bought": self.tarots_bought,
-                "shop_dollars_spent": self.shop_dollars_spent,
-                "planets_bought": self.planets_bought,
-                "vouchers_bought": self.vouchers_bought,
-                "tarot_reading_used": self.tarot_reading_used,
-                "rounds": self.rounds,
-                "jokers_sold": self.jokers_sold,
-                "face_cards_played": self.face_cards_played,
-                "playing_cards_bought": self.playing_cards_bought,
-            # }
+            "file_name": self.file_name,
+            "cards_discarded": self.cards_discarded,
+            "hands_played": self.hands_played,
+            "dollars_earned": self.dollars_earned,
+            "cards_played": self.cards_played,
+            "planetarium_used": self.planetarium_used,
+            "wins": self.wins,
+            "shop_rerolls": self.shop_rerolls,
+            "losses": self.losses,
+            "tarots_bought": self.tarots_bought,
+            "shop_dollars_spent": self.shop_dollars_spent,
+            "planets_bought": self.planets_bought,
+            "vouchers_bought": self.vouchers_bought,
+            "tarot_reading_used": self.tarot_reading_used,
+            "rounds": self.rounds,
+            "jokers_sold": self.jokers_sold,
+            "face_cards_played": self.face_cards_played,
+            "playing_cards_bought": self.playing_cards_bought
         }
 
 class Joker(db.Model):
@@ -75,7 +73,7 @@ class Consumable(db.Model):
 
     def to_json(self):
         return {
-            self.consumable_name: {"count": self.consumable_count}
+            self.consumable_name: self.consumable_count
         }
     
 class Voucher(db.Model):
@@ -88,7 +86,7 @@ class Voucher(db.Model):
 
     def to_json(self):
         return {
-            self.voucher_name: {"count": self.voucher_count}
+            self.voucher_name: self.voucher_count
         }
     
 class Hands(db.Model):

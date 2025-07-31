@@ -66,7 +66,7 @@ function App() {
     <nav>
       <button onClick={() => getList(total, "career").then((rsp) => setDisplayList({list: rsp, item:"career"}))}>Career Stats</button>
       <button onClick={() => getList(total, "hands").then((rsp) => setDisplayList({list: rsp, item:"hands"}))}>Hand Stats</button>
-      <button>Deck Stats</button>
+      <button onClick={() => getList(total, "decks").then((rsp) => setDisplayList({list: rsp, item:"decks"}))}>Deck Stats</button>
       <button>Jokers</button>
       <button>Consumables</button>
       <button>Tarots</button>

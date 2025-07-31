@@ -18,6 +18,7 @@ def readFile(file_number):
         return jsonify({"message": "Save file missing required information"}), 400
     
     #removes unecessary characters to enable json conversion
+    # should be able to replace this with regex re.sub(regex, regex_replacement, string input)
     file_data = file_data.replace("[", "")
     file_data = file_data.replace("]", "")
     file_data = file_data.replace("=", ":")
