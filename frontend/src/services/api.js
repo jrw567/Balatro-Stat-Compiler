@@ -1,8 +1,10 @@
 export const uploadFile = async (previous, data) => {
+    console.log(data)
     if(data.entries().next().value[1].size != 0){
         let entries = [...data.entries()]
         let file_number = entries[1][1]
         let item_type = entries[2][1]
+        console.log(file_number)
         let response = await fetch(`http://127.0.0.1:5000/upload_file/${file_number}`, {method: "POST", body: data}).then((rsp) => rsp.json());
         document.getElementById(`file${file_number}`).innerHTML = response.message;
         return getList(file_number, item_type) //will want to change this to file_number 4
@@ -14,6 +16,8 @@ export const uploadFile = async (previous, data) => {
 
 export const removeFile = async (file_number, item_type) => {
     await fetch(`http://127.0.0.1:5000/remove_file/${file_number}`, {method: "DELETE"})
+    // console.log(item_type)
+    return getList(file_number, item_type)//change this to 4
 }
 
 export const getList = async (file_number, item_type) => {

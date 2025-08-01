@@ -2,9 +2,7 @@ function Deck(props){
     if(props.list.length == 0)
         return <></>
     let list = []
-    const regex = /\B[A-Z]/ //matches all uppercase letters not on boundary
-    let list_json = JSON.stringify(props.list)
-    console.log(props.list[0].wins)
+    console.log(props.list)
     props.list.forEach((e) =>{
         let deck = e.name
         let wins = e.wins
