@@ -59,7 +59,9 @@ class Joker(db.Model):
 
     def to_json(self):
         return {
-            self.joker_name : {"rounds": self.joker_count, "wins": self.joker_wins, "losses": self.joker_losses}
+            self.joker_name : self.joker_count, 
+            "wins": self.joker_wins, 
+            "losses": self.joker_losses
         }
     
 class Consumable(db.Model):
@@ -113,6 +115,8 @@ class Deck(db.Model):
 
     def to_json(self):
         return {
-            self.deck_name: {"wins": self.deck_wins, "losses": self.deck_losses}
+            "name" : self.deck_name,
+            "wins": self.deck_wins, 
+            "losses": self.deck_losses
         }
 
