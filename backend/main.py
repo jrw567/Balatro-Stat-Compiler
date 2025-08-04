@@ -5,9 +5,17 @@ import zlib, json
 
 @app.route("/upload_file/<int:file_number>", methods=["POST"])
 def readFile(file_number):
-    # tarot_list = ["chariot", "death", "devil", "emperor", "empress", "fool", "hanged_man", "hermit", "hierophant", "high_priestess", "judgement", "justice", "lovers", "magician", "moon", "strength", "temperance", "tower", "wheel_of_fortune", "world"]
     planet_list = ["ceres", "earth", "eris", "jupiter", "mars", "mercury", "neptune", "planet_x", "pluto", "saturn", "uranus", "venus"]
-    spectral_list =["ankh", "aura", "black_hole", "cryptid", "deja_vu", "ectoplasm", "familiar", "grim", "hex", "immolate", "incantation", "medium", "ouija", "sigil", "talisman", "trance", "soul", "wraith"]
+
+    spectral_list = ["ankh", "aura", "black_hole", "cryptid", "deja_vu", "ectoplasm", "familiar", "grim", "hex", "immolate", "incantation", "medium", "ouija", "sigil", "talisman", "trance", "soul", "wraith"]
+
+    name_joker = ["abstract", "ancient", "burnt", "clever", "crafty", "crazy", "devious", "droll", "faceless", "glass", "golden", "half", "invisible", "jolly", "mad", "marble", "sly", "smeared", "space", 
+                  "square", "stencil", "stone", "wee", "wily", "zany"]
+    
+    the_joker = ["duo", "family", "idol", "order", "tribe", "trio"]
+
+    card_joker = ["baseball", "business", "flash", "gift", "trading"]
+
     if(request.files.get("profile").filename != "profile.jkr"):
         return jsonify({"message": "Please upload a Balatro save file"}), 400
     
@@ -23,6 +31,10 @@ def readFile(file_number):
     file_data = file_data.replace("]", "")
     file_data = file_data.replace("=", ":")
     file_data = file_data.replace(",}", "}")
+    file_data = file_data.replace("c_", "")
+    file_data = file_data.replace("j_", "")
+    file_data = file_data.replace("b_", "")
+    
     file_data = file_data.replace("return ", "")
 
     # replaces difficulty naming convention for wins and losses in save file to a key/value pair format to enable json conversion
@@ -66,32 +78,86 @@ def readFile(file_number):
     new_career = Career(
         file_num = file_number,
         file_name = file_data["name"],
-        cards_discarded = career["c_cards_discarded"],
-        hands_played = career["c_hands_played"],
-        dollars_earned = career["c_dollars_earned"],
-        cards_played = career["c_cards_played"],
-        planetarium_used = career["c_planetarium_used"],
-        wins = career["c_wins"],
-        shop_rerolls = career["c_shop_rerolls"],
-        losses = career["c_losses"],
-        tarots_bought = career["c_tarots_bought"],
-        shop_dollars_spent = career["c_shop_dollars_spent"],
-        planets_bought = career["c_planets_bought"],
-        vouchers_bought = career["c_vouchers_bought"],
-        tarot_reading_used = career["c_tarot_reading_used"],
-        rounds = career["c_rounds"],
-        jokers_sold = career["c_jokers_sold"],
-        face_cards_played = career["c_face_cards_played"],
-        playing_cards_bought = career["c_playing_cards_bought"]
+        cards_discarded = career["cards_discarded"],
+        hands_played = career["hands_played"],
+        dollars_earned = career["dollars_earned"],
+        cards_played = career["cards_played"],
+        planetarium_used = career["planetarium_used"],
+        wins = career["wins"],
+        shop_rerolls = career["shop_rerolls"],
+        losses = career["losses"],
+        tarots_bought = career["tarots_bought"],
+        shop_dollars_spent = career["shop_dollars_spent"],
+        planets_bought = career["planets_bought"],
+        vouchers_bought = career["vouchers_bought"],
+        tarot_reading_used = career["tarot_reading_used"],
+        rounds = career["rounds"],
+        jokers_sold = career["jokers_sold"],
+        face_cards_played = career["face_cards_played"],
+        playing_cards_bought = career["playing_cards_bought"]
     )
 
     db.session.add(new_career)
     # db.session.commit()
 
     for joker in file_data["joker_usage"]:
+        name = joker
+
+        # checks savefile naming and converts joker names to proper names as needed
+        if name in name_joker:
+            name += "_joker"
+
+        elif name in the_joker:
+            name = "the_" + name
+
+        elif name in card_joker:
+            name += "_card"
+
+        elif name == "ceremonial":
+            name += "_dagger"
+
+        elif name == "delayed_grat":
+            name += "ification"
+
+        elif name == "trousers":
+            name = "spare_" + name
+
+        elif name == "mail":
+            name += "_in_rebate"
+
+        elif name == "chaos":
+            name += "_the_clown"
+
+        elif name == "mr_bones":
+            name = "mr._bones"
+
+        elif name == "mystisummit":
+            name = "mystic_summit"
+
+        elif name == "smiley":
+            name += "_face"
+
+        elif name == "selzer":
+            name = "seltzer"
+
+        elif name == "dna":
+            name = "DNA"
+        
+        elif name == "ring_master":
+            name = "showman"
+
+        elif name == "ticket":
+            name = "golden_" + name
+
+        elif name == "oops":
+            name += "!_all_6s"
+        
+        elif name == "riff_raff":
+            name = "Riff-Raff"
+
         new_joker = Joker(
             file_num = file_number,
-            joker_name = joker,
+            joker_name = name,
             joker_count = file_data["joker_usage"][joker]["count"],
             joker_wins =  file_data["joker_usage"][joker]["wins"],
             joker_losses = file_data["joker_usage"][joker]["losses"])

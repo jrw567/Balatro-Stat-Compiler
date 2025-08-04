@@ -3,6 +3,7 @@ form{
     margin-left: 25px;
     margin-right: 25px;
 }
-.career{
-    text-transform: capitalize;
+/* bandaid fix the gets capitalized */
+.career, .jokers{
+    text-transform: capitalize; 
 }

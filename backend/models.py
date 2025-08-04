@@ -59,7 +59,8 @@ class Joker(db.Model):
 
     def to_json(self):
         return {
-            self.joker_name : self.joker_count, 
+            "name": self.joker_name,
+            "count": self.joker_count, 
             "wins": self.joker_wins, 
             "losses": self.joker_losses
         }
@@ -75,7 +76,8 @@ class Consumable(db.Model):
 
     def to_json(self):
         return {
-            self.consumable_name: self.consumable_count
+            "name": self.consumable_name,
+            "count": self.consumable_count
         }
     
 class Voucher(db.Model):
@@ -88,7 +90,8 @@ class Voucher(db.Model):
 
     def to_json(self):
         return {
-            self.voucher_name: self.voucher_count
+            "name": self.voucher_name,
+            "count": self.voucher_count
         }
     
 class Hands(db.Model):
@@ -101,7 +104,8 @@ class Hands(db.Model):
 
     def to_json(self):
         return {
-            self.hand_name: self.hand_count
+            "name": self.hand_name,
+            "count": self.hand_count
         }
     
 class Deck(db.Model):

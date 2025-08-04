@@ -4,6 +4,10 @@ function Career(props){
     let list = []
     const regex = /_/g //matches all underscores
     Object.keys(props.list[0]).forEach((key) =>{
+        if(key == "file_name"){
+            //change element
+            return
+        }
         list.push(key.replace(regex, " ") + ": " + props.list[0][key])
     })
     return list.map((e, index) => {
