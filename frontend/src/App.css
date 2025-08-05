@@ -3,7 +3,7 @@ form{
     margin-left: 25px;
     margin-right: 25px;
 }
-/* bandaid fix the gets capitalized */
+/* bandaid fix the gets capitalized
 .career, .jokers{
     text-transform: capitalize; 
-}
+} */

@@ -36,6 +36,7 @@ def readFile(file_number):
     file_data = file_data.replace("c_", "")
     file_data = file_data.replace("j_", "")
     file_data = file_data.replace("b_", "")
+    file_data = file_data.replace("v_", "")
     
     file_data = file_data.replace("return ", "")
 
@@ -187,9 +188,13 @@ def readFile(file_number):
         db.session.add(new_consumable)
 
     for voucher in file_data["voucher_usage"]:
+        name = voucher
+        if name == "magitrick":
+            name = "magic_trick"
+        print(name)
         new_voucher = Voucher(
             file_num = file_number,
-            voucher_name = voucher,
+            voucher_name = name,
             voucher_count = file_data["voucher_usage"][voucher]["count"]
         )
         db.session.add(new_voucher)
