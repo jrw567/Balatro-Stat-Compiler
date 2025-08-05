@@ -8,9 +8,7 @@ function Joker(props){
         let count = e.count
         let wins = e.wins
         let losses = e.losses
-        joker = joker.replace("j_", "")
-        joker = joker.replace(joker.charAt(0), joker.charAt(0).toUpperCase())
-        joker = joker.replace(regex, " ")
+        joker = joker.replace(joker.charAt(0), joker.charAt(0).toUpperCase()).replace(regex, " ")
         list.push(joker + `: Rounds: ${count} Wins: ${wins} Losses: ${losses}`)
     })
     return list.map((e, index) => {

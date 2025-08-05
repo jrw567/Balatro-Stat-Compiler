@@ -10,12 +10,6 @@ function Hands(props){
 
         hand = hand.replace(regex, " " + hand.charAt(index)).replace("ofa", " of a")
         list.push(hand + ": " + count)
-
-        // Object.keys(e).forEach((key) =>{
-        //     let index = key.search(regex)
-        //     let new_key = key.replace(regex, " " + key.charAt(index))
-        //     list.push(new_key.replace("ofa", " of a") + ": " + e[key])
-        // })
     })
     return list.map((e, index) => {
         return <p key={index} className="hands">{e}</p>

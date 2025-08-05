@@ -16,6 +16,8 @@ def readFile(file_number):
 
     card_joker = ["baseball", "business", "flash", "gift", "trading"]
 
+    not_the_tarot = ["death", "judgement", "justice", "strength", "temperance"]
+
     if(request.files.get("profile").filename != "profile.jkr"):
         return jsonify({"message": "Please upload a Balatro save file"}), 400
     
@@ -162,24 +164,27 @@ def readFile(file_number):
             joker_wins =  file_data["joker_usage"][joker]["wins"],
             joker_losses = file_data["joker_usage"][joker]["losses"])
         db.session.add(new_joker)
-        # db.session.commit()
 
     for consumable in file_data["consumeable_usage"]:
+        name = consumable
         c_type = ""
         if consumable in planet_list:
             c_type = "planet"
         elif consumable in spectral_list:
+            if name == "soul":
+                name = "the_" + name
             c_type = "spectral"
         else:
+            if name not in not_the_tarot:
+                name = "the_" + name
             c_type = "tarot"
         new_consumable = Consumable(
             file_num = file_number,
-            consumable_name = consumable,
+            consumable_name = name,
             consumable_count = file_data["consumeable_usage"][consumable]["count"],
             consumable_type = c_type
         )
         db.session.add(new_consumable)
-        # db.session.commit()
 
     for voucher in file_data["voucher_usage"]:
         new_voucher = Voucher(
@@ -188,7 +193,6 @@ def readFile(file_number):
             voucher_count = file_data["voucher_usage"][voucher]["count"]
         )
         db.session.add(new_voucher)
-        # db.session.commit()
 
     for hands in file_data["hand_usage"]:
         new_hands = Hands(
@@ -205,7 +209,7 @@ def readFile(file_number):
             deck_wins =  file_data["deck_usage"][deck]["wins"],
             deck_losses = file_data["deck_usage"][deck]["losses"])
         db.session.add(new_deck)
-        # db.session.commit()
+        
     db.session.commit()
     return jsonify({"message": "File uploaded successfully"}), 200
 

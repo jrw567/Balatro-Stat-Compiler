@@ -32,7 +32,7 @@ class Career(db.Model):
             "hands_played": self.hands_played,
             "dollars_earned": self.dollars_earned,
             "cards_played": self.cards_played,
-            "planetarium_used": self.planetarium_used,
+            "planets_used": self.planetarium_used,
             "wins": self.wins,
             "shop_rerolls": self.shop_rerolls,
             "losses": self.losses,
