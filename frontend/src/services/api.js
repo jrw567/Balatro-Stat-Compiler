@@ -5,7 +5,7 @@ export const uploadFile = async (previous, data) => {
         let item_type = entries[2][1]
         let response = await fetch(`http://127.0.0.1:5000/upload_file/${file_number}`, {method: "POST", body: data}).then((rsp) => rsp.json());
         document.getElementById(`file${file_number}`).innerHTML = response.message;
-        return getList(file_number, item_type) //will want to change this to file_number 4
+        return getList(4, item_type) //will want to change this to file_number 4
     } else {
         document.getElementById(`file1`).innerHTML = "Please upload a Balatro save file";
         return true;

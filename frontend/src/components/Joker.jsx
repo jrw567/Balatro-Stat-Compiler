@@ -4,7 +4,16 @@ function Joker(props){
     let list = []
     const under_regex = /_/g //matches all underscores
     const name_regex = /\b[a-z]/ //matches first letters of a word that are lowercase
-    props.list.forEach((e) =>{
+
+    let sortedList = props.list.toSorted((a,b) => { //sorts by rounds played
+        if(a.count > b.count)
+            return -1
+        else if(a.count < b.count)
+            return 1
+        return 0
+    })
+    
+    sortedList.forEach((e) =>{
         let joker = e.name
         let count = e.count
         let wins = e.wins

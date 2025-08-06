@@ -1,5 +1,4 @@
 import Career from "./Career"
-//import Hands from "./Hands"
 import Deck from "./Deck"
 import Joker from "./Joker"
 import Other from "./Other"
@@ -16,7 +15,7 @@ function DisplayList(props){
      else if(props.item == "hands" || props.item == "consumables" || props.item == "tarots" || props.item == "planets" || props.item == "spectrals" || props.item == "vouchers")
         return <Other list={props.list} item={props.item}/>
     else {
-        <p className="error">An error has occurred. Please reload the site.</p>
+        return <p className="error">An error has occurred. Please reload the site.</p>
     }
 }
 

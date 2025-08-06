@@ -4,7 +4,7 @@ import { uploadFile, removeFile, getList } from './services/api'
 import DisplayList from './components/DisplayList';
 
 function App() {
-  const total = 1 //change to 4*******
+  const total = 4 //change to 4*******
 
   const [displayList, setDisplayList] = useState({list:[], item:"career"});
   const [firstRender, setFirstRender] = useState(true);

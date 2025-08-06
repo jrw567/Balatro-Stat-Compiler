@@ -5,6 +5,8 @@ import zlib, json
 
 @app.route("/upload_file/<int:file_number>", methods=["POST"])
 def readFile(file_number):
+    TOTAL_FILE = 4
+
     planet_list = ["ceres", "earth", "eris", "jupiter", "mars", "mercury", "neptune", "planet_x", "pluto", "saturn", "uranus", "venus"]
 
     spectral_list = ["ankh", "aura", "black_hole", "cryptid", "deja_vu", "ectoplasm", "familiar", "grim", "hex", "immolate", "incantation", "medium", "ouija", "sigil", "talisman", "trance", "soul", "wraith"]
@@ -101,7 +103,51 @@ def readFile(file_number):
     )
 
     db.session.add(new_career)
-    # db.session.commit()
+
+    q = db.session.query(Career).filter(Career.file_num == TOTAL_FILE)
+    if(db.session.query(q.exists()).scalar()):
+        for x in q:
+            x.cards_discarded += career["cards_discarded"]
+            x.hands_played += career["hands_played"]
+            x.dollars_earned += career["dollars_earned"]
+            x.cards_played += career["cards_played"]
+            x.planetarium_used += career["planetarium_used"]
+            x.wins += career["wins"]
+            x.shop_rerolls += career["shop_rerolls"]
+            x.losses += career["losses"]
+            x.tarots_bought += career["tarots_bought"]
+            x.shop_dollars_spent += career["shop_dollars_spent"]
+            x.planets_bought += career["planets_bought"]
+            x.vouchers_bought += career["vouchers_bought"]
+            x.tarot_reading_used += career["tarot_reading_used"]
+            x.rounds += career["rounds"]
+            x.jokers_sold += career["jokers_sold"]
+            x.face_cards_played += career["face_cards_played"]
+            x.playing_cards_bought += career["playing_cards_bought"]
+        
+    else:
+        new_career = Career(
+            file_num = TOTAL_FILE,
+            file_name = file_data["name"],
+            cards_discarded = career["cards_discarded"],
+            hands_played = career["hands_played"],
+            dollars_earned = career["dollars_earned"],
+            cards_played = career["cards_played"],
+            planetarium_used = career["planetarium_used"],
+            wins = career["wins"],
+            shop_rerolls = career["shop_rerolls"],
+            losses = career["losses"],
+            tarots_bought = career["tarots_bought"],
+            shop_dollars_spent = career["shop_dollars_spent"],
+            planets_bought = career["planets_bought"],
+            vouchers_bought = career["vouchers_bought"],
+            tarot_reading_used = career["tarot_reading_used"],
+            rounds = career["rounds"],
+            jokers_sold = career["jokers_sold"],
+            face_cards_played = career["face_cards_played"],
+            playing_cards_bought = career["playing_cards_bought"]
+        )
+        db.session.add(new_career)
 
     for joker in file_data["joker_usage"]:
         name = joker
@@ -164,21 +210,43 @@ def readFile(file_number):
             joker_count = file_data["joker_usage"][joker]["count"],
             joker_wins =  file_data["joker_usage"][joker]["wins"],
             joker_losses = file_data["joker_usage"][joker]["losses"])
+        
         db.session.add(new_joker)
+
+        q = db.session.query(Joker).filter(Joker.file_num == TOTAL_FILE).filter(Joker.joker_name == name)
+        if(db.session.query(q.exists()).scalar()):
+            for x in q:
+                x.joker_count += file_data["joker_usage"][joker]["count"]
+                x.joker_wins +=  file_data["joker_usage"][joker]["wins"]
+                x.joker_losses += file_data["joker_usage"][joker]["losses"]
+        
+        else:
+            new_joker = Joker(
+                file_num = TOTAL_FILE,
+                joker_name = name,
+                joker_count = file_data["joker_usage"][joker]["count"],
+                joker_wins =  file_data["joker_usage"][joker]["wins"],
+                joker_losses = file_data["joker_usage"][joker]["losses"])
+            db.session.add(new_joker)
 
     for consumable in file_data["consumeable_usage"]:
         name = consumable
         c_type = ""
         if consumable in planet_list:
             c_type = "planet"
+
         elif consumable in spectral_list:
             if name == "soul":
                 name = "the_" + name
+
             c_type = "spectral"
+
         else:
             if name not in not_the_tarot:
                 name = "the_" + name
+
             c_type = "tarot"
+
         new_consumable = Consumable(
             file_num = file_number,
             consumable_name = name,
@@ -188,10 +256,13 @@ def readFile(file_number):
         db.session.add(new_consumable)
 
     for voucher in file_data["voucher_usage"]:
+
         name = voucher
         if name == "magitrick":
             name = "magic_trick"
-        print(name)
+        elif name == "overstock_norm":
+            name = "overstock"
+
         new_voucher = Voucher(
             file_num = file_number,
             voucher_name = name,
@@ -255,6 +326,12 @@ def getStats(item_type,file_number):
 
 @app.route("/remove_file/<int:file_number>", methods=["DELETE"])
 def remove_file(file_number):
+    for x in db.session.query(Career).filter(Career.file_num == 4): #***********TEMP****************
+        db.session.delete(x)
+
+    for x in db.session.query(Joker).filter(Joker.file_num == 4): #***********TEMP****************
+        db.session.delete(x)
+    
     for x in db.session.query(Career).filter(Career.file_num == file_number):
         db.session.delete(x)
     
