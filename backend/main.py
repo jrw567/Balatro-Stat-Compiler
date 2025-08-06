@@ -255,8 +255,21 @@ def readFile(file_number):
         )
         db.session.add(new_consumable)
 
-    for voucher in file_data["voucher_usage"]:
+        q = db.session.query(Consumable).filter(Consumable.file_num == TOTAL_FILE).filter(Consumable.consumable_name == name)
+        if(db.session.query(q.exists()).scalar()):
+            for x in q:
+                x.consumable_count += file_data["consumeable_usage"][consumable]["count"]
+        
+        else:
+            new_consumable = Consumable(
+                file_num = TOTAL_FILE,
+                consumable_name = name,
+                consumable_count = file_data["consumeable_usage"][consumable]["count"],
+                consumable_type = c_type
+            )
+            db.session.add(new_consumable)
 
+    for voucher in file_data["voucher_usage"]:
         name = voucher
         if name == "magitrick":
             name = "magic_trick"
@@ -270,6 +283,19 @@ def readFile(file_number):
         )
         db.session.add(new_voucher)
 
+        q = db.session.query(Voucher).filter(Voucher.file_num == TOTAL_FILE).filter(Voucher.voucher_name == name)
+        if(db.session.query(q.exists()).scalar()):
+            for x in q:
+                x.voucher_count += file_data["voucher_usage"][voucher]["count"]
+        
+        else:
+            new_voucher = Voucher(
+                file_num = TOTAL_FILE,
+                voucher_name = name,
+                voucher_count = file_data["voucher_usage"][voucher]["count"]
+            )
+            db.session.add(new_voucher)
+
     for hands in file_data["hand_usage"]:
         new_hands = Hands(
             file_num = file_number,
@@ -278,13 +304,40 @@ def readFile(file_number):
         )
         db.session.add(new_hands)
 
+        q = db.session.query(Hands).filter(Hands.file_num == TOTAL_FILE).filter(Hands.hand_name == hands)
+        if(db.session.query(q.exists()).scalar()):
+            for x in q:
+                x.hand_count += file_data["hand_usage"][hands]["count"]
+        
+        else:
+            new_hands = Hands(
+                file_num = TOTAL_FILE,
+                hand_name = hands,
+                hand_count = file_data["hand_usage"][hands]["count"]
+            )
+            db.session.add(new_hands)
+
     for deck in file_data["deck_usage"]:
         new_deck = Deck(
             file_num = file_number,
             deck_name = deck,
-            deck_wins =  file_data["deck_usage"][deck]["wins"],
+            deck_wins = file_data["deck_usage"][deck]["wins"],
             deck_losses = file_data["deck_usage"][deck]["losses"])
         db.session.add(new_deck)
+
+        q = db.session.query(Deck).filter(Deck.file_num == TOTAL_FILE).filter(Deck.deck_name == deck)
+        if(db.session.query(q.exists()).scalar()):
+            for x in q:
+                x.deck_wins += file_data["deck_usage"][deck]["wins"]
+                x.deck_losses += file_data["deck_usage"][deck]["losses"]
+        
+        else:
+            new_deck = Deck(
+                file_num = TOTAL_FILE,
+                deck_name = deck,
+                deck_wins = file_data["deck_usage"][deck]["wins"],
+                deck_losses = file_data["deck_usage"][deck]["losses"])
+            db.session.add(new_deck)
         
     db.session.commit()
     return jsonify({"message": "File uploaded successfully"}), 200
@@ -326,28 +379,66 @@ def getStats(item_type,file_number):
 
 @app.route("/remove_file/<int:file_number>", methods=["DELETE"])
 def remove_file(file_number):
-    for x in db.session.query(Career).filter(Career.file_num == 4): #***********TEMP****************
-        db.session.delete(x)
-
-    for x in db.session.query(Joker).filter(Joker.file_num == 4): #***********TEMP****************
-        db.session.delete(x)
-    
+    TOTAL_FILE = 4
     for x in db.session.query(Career).filter(Career.file_num == file_number):
+        q = db.session.query(Career).filter(Career.file_num == TOTAL_FILE)
+        if(db.session.query(q.exists()).scalar()):
+            for y in q:
+                y.cards_discarded -= x.cards_discarded
+                y.hands_played -= x.hands_played
+                y.dollars_earned -= x.dollars_earned
+                y.cards_played -= x.cards_played
+                y.planetarium_used -= x.planetarium_used
+                y.wins -= x.wins
+                y.shop_rerolls -= x.shop_rerolls
+                y.losses -= x.losses
+                y.tarots_bought -= x.tarots_bought
+                y.shop_dollars_spent -= x.shop_dollars_spent
+                y.planets_bought -= x.planets_bought
+                y.vouchers_bought -= x.vouchers_bought
+                y.tarot_reading_used -= x.tarot_reading_used
+                y.rounds -= x.rounds
+                y.jokers_sold -= x.jokers_sold
+                y.face_cards_played -= x.face_cards_played
+                y.playing_cards_bought -= x.playing_cards_bought
         db.session.delete(x)
     
     for x in db.session.query(Joker).filter(Joker.file_num == file_number):
+        q = db.session.query(Joker).filter(Joker.file_num == TOTAL_FILE).filter(Joker.joker_name == x.joker_name)
+        if(db.session.query(q.exists()).scalar()):
+            for y in q:
+                y.joker_count -= x.joker_count
+                y.joker_wins -=  x.joker_wins
+                y.joker_losses -= x.joker_losses
         db.session.delete(x)
 
     for x in db.session.query(Consumable).filter(Consumable.file_num == file_number):
+        q = db.session.query(Consumable).filter(Consumable.file_num == TOTAL_FILE).filter(Consumable.consumable_name == x.consumable_name)
+        if(db.session.query(q.exists()).scalar()):
+            for y in q:
+                y.consumable_count -= x.consumable_count
         db.session.delete(x)
 
     for x in db.session.query(Voucher).filter(Voucher.file_num == file_number):
+        q = db.session.query(Voucher).filter(Voucher.file_num == TOTAL_FILE).filter(Voucher.voucher_name == x.voucher_name)
+        if(db.session.query(q.exists()).scalar()):
+            for y in q:
+                y.voucher_count -= x.voucher_count
         db.session.delete(x)
 
     for x in db.session.query(Hands).filter(Hands.file_num == file_number):
+        q = db.session.query(Hands).filter(Hands.file_num == TOTAL_FILE).filter(Hands.hand_name == x.hand_name)
+        if(db.session.query(q.exists()).scalar()):
+            for y in q:
+                y.hand_count -= x.hand_count
         db.session.delete(x)
 
     for x in db.session.query(Deck).filter(Deck.file_num == file_number):
+        q = db.session.query(Deck).filter(Deck.file_num == TOTAL_FILE).filter(Deck.deck_name == x.deck_name)
+        if(db.session.query(q.exists()).scalar()):
+            for y in q:
+                y.deck_wins -= x.deck_wins
+                y.deck_losses -= x.deck_losses
         db.session.delete(x)
     
     db.session.commit()

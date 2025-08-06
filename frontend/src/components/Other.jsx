@@ -6,7 +6,15 @@ function Other(props){
     const under_regex = /_/g //matches all underscores
     const name_regex = /\b[a-z]/ //matches first letters of a word that are lowercase
     const hand_regex = /\B[A-Z]/ //matches all uppercase letters not on boundary
-    props.list.forEach((e) =>{
+
+    let sortedList = props.list.toSorted((a,b) => { //sorts by count which is effectively times used
+        if(a.count > b.count)
+            return -1
+        else if(a.count < b.count)
+            return 1
+        return 0
+    })
+    sortedList.forEach((e) =>{
         let other = e.name
         let count = e.count
         other = other.replace(under_regex, " ")

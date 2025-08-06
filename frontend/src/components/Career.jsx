@@ -4,6 +4,7 @@ function Career(props){
     let list = []
     const under_regex = /_/g //matches all underscores
     const name_regex = /\b[a-z]/ //matches first letters of a word that are lowercase
+    //will order career stats manually
     Object.keys(props.list[0]).forEach((key) =>{
         if(key == "file_name"){
             //change element

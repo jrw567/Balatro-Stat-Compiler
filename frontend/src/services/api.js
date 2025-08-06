@@ -14,7 +14,7 @@ export const uploadFile = async (previous, data) => {
 
 export const removeFile = async (file_number, item_type) => {
     await fetch(`http://127.0.0.1:5000/remove_file/${file_number}`, {method: "DELETE"})
-    return getList(file_number, item_type)//change this to 4
+    return getList(4, item_type)//change this to 4
 }
 
 export const getList = async (file_number, item_type) => {
