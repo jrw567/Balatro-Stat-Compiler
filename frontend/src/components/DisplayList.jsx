@@ -4,7 +4,7 @@ import Joker from "./Joker"
 import Other from "./Other"
 
 function DisplayList(props){
-    if(props.list.length == 0 || props.item == null)
+    if(props.list == null || props.item == null|| props.list.length == 0)
         return <></>
     if(props.item == "career")
         return <Career list={props.list}/>

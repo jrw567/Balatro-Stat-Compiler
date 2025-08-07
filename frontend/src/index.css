@@ -1,0 +1,9 @@
+/* need to credit */
+@font-face {
+    font-family: 'm6x11';
+    src: url(../fonts/m6x11.ttf);
+}
+body{
+    font-family: 'm6x11';
+    background: grey;
+}
