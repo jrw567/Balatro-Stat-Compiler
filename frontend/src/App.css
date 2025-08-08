@@ -4,11 +4,20 @@ form{
     margin-left: 25px;
     margin-right: 25px;
 }
-
+form button{
+    text-align: left;
+}
+#fileInput{
+    display: block;
+    margin: 0px auto;
+    max-width: 1500px;
+}
 h2{
     position: relative;
-    background: green;
+    display: inline-block;
+    background: rgb(255, 68, 59);
     color: white;
+    text-align: center;
     padding: 15px;
     width: 75px;
     border-radius: 20px;
@@ -16,7 +25,7 @@ h2{
 
 div{
     position: relative;
-    text-align: center;
+    /* text-align: center; */
     display: inline-block;
 }
  nav button{
@@ -27,6 +36,28 @@ div{
     border: none;
     border-radius: 20px;
     padding: 8px;
-    margin-left: 2px;
-    margin-right: 2px;
+    margin-left: 4px;
+    margin-right: 4px;
+    box-shadow: 5px 7px 3px rgba(0, 0, 0, 0.445);
+ }
+
+ #display{
+    position: relative;
+    display: block;
+    background: rgb(71, 71, 71);
+    max-width: 1300px;
+    min-height: 1000px;
+    border-radius: 10px;
+    margin: 0px auto;
+ }
+
+
+ nav button:hover{
+    background: rgb(161, 34, 31);
+    cursor: pointer;
+ }
+
+ nav button:active{
+    transform: translate3D(5px, 7px, 0px);
+    box-shadow: none;
  }

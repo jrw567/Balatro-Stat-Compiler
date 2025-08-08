@@ -5,7 +5,9 @@ import Other from "./Other"
 
 function DisplayList(props){
     if(props.list == null || props.item == null|| props.list.length == 0)
-        return <></>
+        return <>
+            <p>Insert description of how the application works</p>
+        </>
     if(props.item == "career")
         return <Career list={props.list}/>
     else if(props.item == "decks")

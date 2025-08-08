@@ -19,18 +19,19 @@ function App() {
   
   return (
     <>
-      <div>
+      <div id='fileInput'>
         <h2>Save 1</h2>
         <form action={(e) =>{e.append("fileNum", 1), e.append("itemType", displayList.item), formAction(e)}} id="fileForm1">
           <input type="file" name="profile" accept=".jkr"/>
-          <input type="submit" value={"Upload file"}/>
           <br />
+          <input type="submit" value={"Upload file"}/> 
+          {/* set inner html to remove1 on file upload and browse when removed */}
           <span id='file1'></span>
          </form>
         <button id='remove1' onClick={() => {removeFile(1, displayList.item).then((rsp) => setDisplayList({list: rsp, item: displayList.item}))}}>Remove</button>
-      </div>
+      
 
-      <div>
+      
         <h2>Save 2</h2>
         <form action={(e) =>{e.append("fileNum", 2), e.append("itemType", displayList.item), formAction(e)}} id="fileForm2">
           <input type="file" name="profile" accept=".jkr"/>
@@ -39,9 +40,9 @@ function App() {
         <span id='file2'></span>
         </form>
         <button id='remove2' onClick={() => {removeFile(2, displayList.item).then((rsp) => setDisplayList({list: rsp, item: displayList.item}))}}>Remove</button>
-      </div>
       
-      <div>
+      
+      
         <h2>Save 3</h2>
         <form action={(e) =>{e.append("fileNum", 3), e.append("itemType", displayList.item), formAction(e)}} id="fileForm3">
           <input type="file" name="profile" accept=".jkr"/>
@@ -53,20 +54,22 @@ function App() {
         <br />
       </div>
       
-
-    <nav>
-      <button onClick={() => { getList(total, "career").then((rsp) => setDisplayList({list: rsp, item:"career"}))}}>Career Stats</button>
-      <button onClick={() => { getList(total, "hands").then((rsp) => setDisplayList({list: rsp, item:"hands"}))}}>Hand Stats</button>
-      <button onClick={() => { getList(total, "decks").then((rsp) => setDisplayList({list: rsp, item:"decks"}))}}>Deck Stats</button>
-      <button onClick={() => { getList(total, "jokers").then((rsp) => setDisplayList({list: rsp, item:"jokers"}))}}>Jokers</button>
-      <button onClick={() => { getList(total, "consumables").then((rsp) => setDisplayList({list: rsp, item:"consumables"}))}}>Consumables</button>
-      <button onClick={() => { getList(total, "tarots").then((rsp) => setDisplayList({list: rsp, item:"tarots"}))}}>Tarots</button>
-      <button onClick={() => { getList(total, "planets").then((rsp) => setDisplayList({list: rsp, item:"planets"}))}}>Planets</button>
-      <button onClick={() => { getList(total, "spectrals").then((rsp) => setDisplayList({list: rsp, item:"spectrals"}))}}>Spectrals</button>
-      <button onClick={() => { getList(total, "vouchers").then((rsp) => setDisplayList({list: rsp, item:"vouchers"}))}}>Vouchers</button>
-    </nav>
-      <br />
-      <DisplayList list={displayList.list} item={displayList.item}/>
+      <div id='display'>
+        <nav>
+          <button onClick={() => { getList(total, "career").then((rsp) => setDisplayList({list: rsp, item:"career"}))}}>Career Stats</button>
+          <button onClick={() => { getList(total, "hands").then((rsp) => setDisplayList({list: rsp, item:"hands"}))}}>Hand Stats</button>
+          <button onClick={() => { getList(total, "decks").then((rsp) => setDisplayList({list: rsp, item:"decks"}))}}>Deck Stats</button>
+          <button onClick={() => { getList(total, "jokers").then((rsp) => setDisplayList({list: rsp, item:"jokers"}))}}>Jokers</button>
+          <button onClick={() => { getList(total, "consumables").then((rsp) => setDisplayList({list: rsp, item:"consumables"}))}}>Consumables</button>
+          <button onClick={() => { getList(total, "tarots").then((rsp) => setDisplayList({list: rsp, item:"tarots"}))}}>Tarots</button>
+          <button onClick={() => { getList(total, "planets").then((rsp) => setDisplayList({list: rsp, item:"planets"}))}}>Planets</button>
+          <button onClick={() => { getList(total, "spectrals").then((rsp) => setDisplayList({list: rsp, item:"spectrals"}))}}>Spectrals</button>
+          <button onClick={() => { getList(total, "vouchers").then((rsp) => setDisplayList({list: rsp, item:"vouchers"}))}}>Vouchers</button>
+        </nav>
+        <br />
+        <DisplayList list={displayList.list} item={displayList.item}/>
+      </div>
+      
     </>
     
   )
