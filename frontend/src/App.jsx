@@ -21,38 +21,43 @@ function App() {
     <>
       <h1>Balatro Stat Compiler</h1>
       <div id='fileInput'>
-        <h2>Save 1</h2>
-        <form action={(e) =>{e.append("fileNum", 1), e.append("itemType", displayList.item), formAction(e)}} id="fileForm1">
-          <input type="file" name="profile" accept=".jkr"/>
-          <br />
-          <input type="submit" value={"Upload file"}/> 
-          {/* set inner html to remove1 on file upload and browse when removed */}
-          <span id='file1'></span>
-         </form>
-        <button id='remove1' onClick={() => {removeFile(1, displayList.item).then((rsp) => setDisplayList({list: rsp, item: displayList.item}))}}>Remove</button>
+        <div>
+          <h2>Save 1</h2>
+          <form action={(e) =>{e.append("fileNum", 1), e.append("itemType", displayList.item), formAction(e)}} id="fileForm1">
+            <input type="file" name="profile" accept=".jkr"/>
+            <br />
+            <input type="submit" value={"Upload file"}/> 
+            {/* set inner html to remove1 on file upload and browse when removed */}
+            <span id='file1'></span>
+          </form>
+          <button id='remove1' onClick={() => {removeFile(1, displayList.item).then((rsp) => setDisplayList({list: rsp, item: displayList.item}))}}>Remove</button>
+        </div>
+        
       
 
+        <div>
+          <h2>Save 2</h2>
+          <form action={(e) =>{e.append("fileNum", 2), e.append("itemType", displayList.item), formAction(e)}} id="fileForm2">
+            <input type="file" name="profile" accept=".jkr"/>
+            <br />
+            <input type="submit" value={"Upload file"}/>
+          <span id='file2'></span>
+          </form>
+          <button id='remove2' onClick={() => {removeFile(2, displayList.item).then((rsp) => setDisplayList({list: rsp, item: displayList.item}))}}>Remove</button>
+        </div>
+        
       
-        <h2>Save 2</h2>
-        <form action={(e) =>{e.append("fileNum", 2), e.append("itemType", displayList.item), formAction(e)}} id="fileForm2">
-          <input type="file" name="profile" accept=".jkr"/>
-          <br />
-          <input type="submit" value={"Upload file"}/>
-        <span id='file2'></span>
-        </form>
-        <button id='remove2' onClick={() => {removeFile(2, displayList.item).then((rsp) => setDisplayList({list: rsp, item: displayList.item}))}}>Remove</button>
       
-      
-      
-        <h2>Save 3</h2>
-        <form action={(e) =>{e.append("fileNum", 3), e.append("itemType", displayList.item), formAction(e)}} id="fileForm3">
-          <input type="file" name="profile" accept=".jkr"/>
-          <br />
-          <input type="submit" value={"Upload file"}/>
-          <span id='file3'></span>
-        </form>
-        <button id='remove3' onClick={() => {removeFile(3, displayList.item).then((rsp) => setDisplayList({list: rsp, item: displayList.item}))}}>Remove</button>
-        <br />
+        <div>
+          <h2>Save 3</h2>
+          <form action={(e) =>{e.append("fileNum", 3), e.append("itemType", displayList.item), formAction(e)}} id="fileForm3">
+            <input type="file" name="profile" accept=".jkr"/>
+            <br />
+            <input type="submit" value={"Upload file"}/>
+            <span id='file3'></span>
+          </form>
+          <button id='remove3' onClick={() => {removeFile(3, displayList.item).then((rsp) => setDisplayList({list: rsp, item: displayList.item}))}}>Remove</button>
+        </div>
       </div>
       
       <div id='display'>

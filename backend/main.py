@@ -4,20 +4,32 @@ from models import Career,Joker,Consumable,Voucher,Hands,Deck
 import zlib, json
 
 @app.route("/upload_file/<int:file_number>", methods=["POST"])
+
+#Reads file from given form data and stores it under given file number
+#Reads all notable information including: Career, Joker, Hand, Consumable, and Deck Statistics
+#Checks the total file to see if information is stored and if it is it will total the stats otherwise it will create a new entry
 def readFile(file_number):
+
+    #Combined data stored as a 4th file under file number 4
     TOTAL_FILE = 4
 
+    #List of planet cards to check for to distinguish consumables
     planet_list = ["ceres", "earth", "eris", "jupiter", "mars", "mercury", "neptune", "planet_x", "pluto", "saturn", "uranus", "venus"]
 
+    #List of spectral cards to check for to distinguish consumables
     spectral_list = ["ankh", "aura", "black_hole", "cryptid", "deja_vu", "ectoplasm", "familiar", "grim", "hex", "immolate", "incantation", "medium", "ouija", "sigil", "talisman", "trance", "soul", "wraith"]
 
+    #List of Jokers whose names are followed by Joker ie. Abstract Joker but aren't listed as such in the save file
     name_joker = ["abstract", "ancient", "burnt", "clever", "crafty", "crazy", "devious", "droll", "faceless", "glass", "golden", "half", "invisible", "jolly", "mad", "marble", "sly", "smeared", "space", 
                   "square", "stencil", "stone", "wee", "wily", "zany"]
     
+    #List of Jokers whose names start with The ie. The Duo but aren't listed as such in the save file
     the_joker = ["duo", "family", "idol", "order", "tribe", "trio"]
 
+    #List of Jokers whose names are followed by Card ie. Baseball Card but aren't listed as such in the save file
     card_joker = ["baseball", "business", "flash", "gift", "trading"]
 
+    #List of Tarots whose names dont start with The (most do but none have it listed within the save file)
     not_the_tarot = ["death", "judgement", "justice", "strength", "temperance"]
 
     if(request.files.get("profile").filename != "profile.jkr"):
@@ -29,8 +41,7 @@ def readFile(file_number):
     if "career_stats" not in file_data or "joker_usage" not in file_data or "voucher_usage" not in file_data or "challenge_progress" not in file_data or "consumeable_usage" not in file_data or "deck_usage" not in file_data:
         return jsonify({"message": "Save file missing required information"}), 400
     
-    #removes unecessary characters to enable json conversion
-    # should be able to replace this with regex re.sub(regex, regex_replacement, string input)
+    # removes unecessary characters to enable json conversion
     file_data = file_data.replace("[", "")
     file_data = file_data.replace("]", "")
     file_data = file_data.replace("=", ":")
@@ -54,6 +65,7 @@ def readFile(file_number):
 
     file_data = json.loads(file_data)
 
+    #Reads Joker data from file and tallies wins and losses
     for joker in file_data["joker_usage"]:
         wins = 0
         losses = 0
@@ -65,6 +77,7 @@ def readFile(file_number):
         file_data["joker_usage"][joker]["wins"] = wins
         file_data["joker_usage"][joker]["losses"] = losses
 
+    #Reads Deck data from file and tallies wins and losses
     for deck in file_data["deck_usage"]:
         wins = 0
         losses = 0
@@ -78,8 +91,8 @@ def readFile(file_number):
 
     career = file_data["career_stats"]
     
-    # when reading check to see if something exists in file num 4 (total) if not create it otherwise add the values to it
-
+    #Creates new entries for respective file numbers
+    #Also checks total file to either combine data or create a new entry if not present
     new_career = Career(
         file_num = file_number,
         file_name = file_data["name"],
@@ -343,6 +356,7 @@ def readFile(file_number):
     return jsonify({"message": "File uploaded successfully"}), 200
 
 @app.route("/get_<string:item_type>/<int:file_number>", methods=["GET"])
+#Retrieves all stats from a given item type and file number
 def getStats(item_type,file_number):
     stats_json = []
     if item_type == "career":
@@ -378,6 +392,8 @@ def getStats(item_type,file_number):
     return stats_json
 
 @app.route("/remove_file/<int:file_number>", methods=["DELETE"])
+
+#Removes the data of the given file number from the total before deleting the entries related to that number
 def remove_file(file_number):
     TOTAL_FILE = 4
     for x in db.session.query(Career).filter(Career.file_num == file_number):
