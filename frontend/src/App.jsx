@@ -4,7 +4,7 @@ import { uploadFile, removeFile, getList } from './services/api'
 import DisplayList from './components/DisplayList';
 
 function App() {
-  const total = 4 //change to 4*******
+  const total = 4
 
   const [displayList, setDisplayList] = useState({list:[], item:"career"});
   const [firstRender, setFirstRender] = useState(true);
@@ -19,6 +19,7 @@ function App() {
   
   return (
     <>
+      <h1>Balatro Stat Compiler</h1>
       <div id='fileInput'>
         <h2>Save 1</h2>
         <form action={(e) =>{e.append("fileNum", 1), e.append("itemType", displayList.item), formAction(e)}} id="fileForm1">
@@ -35,8 +36,8 @@ function App() {
         <h2>Save 2</h2>
         <form action={(e) =>{e.append("fileNum", 2), e.append("itemType", displayList.item), formAction(e)}} id="fileForm2">
           <input type="file" name="profile" accept=".jkr"/>
-          <input type="submit" value={"Upload file"}/>
           <br />
+          <input type="submit" value={"Upload file"}/>
         <span id='file2'></span>
         </form>
         <button id='remove2' onClick={() => {removeFile(2, displayList.item).then((rsp) => setDisplayList({list: rsp, item: displayList.item}))}}>Remove</button>
@@ -46,8 +47,8 @@ function App() {
         <h2>Save 3</h2>
         <form action={(e) =>{e.append("fileNum", 3), e.append("itemType", displayList.item), formAction(e)}} id="fileForm3">
           <input type="file" name="profile" accept=".jkr"/>
-          <input type="submit" value={"Upload file"}/>
           <br />
+          <input type="submit" value={"Upload file"}/>
           <span id='file3'></span>
         </form>
         <button id='remove3' onClick={() => {removeFile(3, displayList.item).then((rsp) => setDisplayList({list: rsp, item: displayList.item}))}}>Remove</button>
@@ -69,7 +70,9 @@ function App() {
         <br />
         <DisplayList list={displayList.list} item={displayList.item}/>
       </div>
-      
+      <div id="footer">
+        <footer>All assets used are property of LocalThunk and Playstack. m6x11 font by: <a href="https://managore.itch.io/m6x11">Daniel Linssen</a></footer>
+      </div>
     </>
     
   )

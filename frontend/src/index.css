@@ -3,11 +3,33 @@
     font-family: 'm6x11';
     src: url(../fonts/m6x11.ttf);
 }
+html, body{
+    min-height: 100%;
+}
+#root{
+    display: grid;
+    height: 100%;
+    grid-template-columns: repeat(6, 1fr);
+    grid-auto-rows: 10%;
+    margin: 0px auto;
+    grid-template-areas:
+    ". . title title . ."
+    ". display display display display ."
+    ". display display display display ."
+    "file display display display display ."
+    "file display display display display ."
+    "file display display display display ."
+    ". display display display display ."
+    ". display display display display ."
+    ". display display display display ."
+    ". . footer footer . .";
+}
 body{
     font-family: 'm6x11';
     background: grey;
+    height: 100vh;
 }
-#root{
+/* #root{
     display: block;
     margin: 0px auto;
-}
+} */
