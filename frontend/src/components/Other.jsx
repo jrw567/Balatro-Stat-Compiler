@@ -14,6 +14,7 @@ function Other(props){
             return 1
         return 0
     })
+
     sortedList.forEach((e) =>{
         let other = e.name
         let count = e.count
@@ -29,8 +30,29 @@ function Other(props){
         }
         list.push(other + `: Count: ${count}`)
     })
-    return list.map((e, index) => {
-        return <p key={index} className={props.item}>{e}</p>
-    })
+
+    if(props.item == "hands"){
+        return list.map((e, index) => {
+            return <p key={index} className={props.item}>{e}</p>
+        })
+    }
+    else if(props.item == "vouchers"){
+        return list.map((e, index) => {
+            let name = e.substring(0, e.indexOf(":"))
+            return <>
+                <p key={index} className={props.item}>{e}</p>
+                <img src={`../images/vouchers/${name}.webp`} alt={`Image of ${name}`} />
+            </>
+        })
+    } else{
+        return list.map((e, index) => {
+            let name = e.substring(0, e.indexOf(":"))
+            return <>
+                <p key={index} className={props.item}>{e}</p>
+                <img src={`../images/consumables/${name}.webp`} alt={`Image of ${name}`} />
+            </>
+        })
+    }
+    
 }
 export default Other

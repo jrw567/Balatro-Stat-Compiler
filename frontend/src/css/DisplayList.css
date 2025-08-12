@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'm6x11';
+    src: url(../fonts/m6x11.ttf);
+}
+
+p {
+    color: white;
+    font-size: 16px;
+}

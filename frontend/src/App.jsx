@@ -1,5 +1,5 @@
 import { useEffect, useState, useActionState } from 'react'
-import './App.css'
+import './css/App.css'
 import { uploadFile, removeFile, getList } from './services/api'
 import DisplayList from './components/DisplayList';
 

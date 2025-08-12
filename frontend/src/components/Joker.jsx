@@ -28,11 +28,9 @@ function Joker(props){
     })
     return list.map((e, index) => {
         let name = e.substring(0, e.indexOf(":"))
-        let filePath = "../images/jokers/" + name + ".webp"
-        console.log(filePath)
         return <>
             <p key={index} className="jokers">{e}</p>
-            <img src={filePath} alt="" />
+            <img src={`../images/jokers/${name}.webp`} alt={`Image of ${name}`} />
         </>
     })
 }

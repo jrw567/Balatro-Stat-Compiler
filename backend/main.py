@@ -272,7 +272,8 @@ def readFile(file_number):
         else:
             if name not in not_the_tarot:
                 name = "the_" + name
-
+            if name == "the_heirophant":
+                name = "the_hierophant"
             c_type = "tarot"
 
         new_consumable = Consumable(
@@ -301,8 +302,12 @@ def readFile(file_number):
         name = voucher
         if name == "magitrick":
             name = "magic_trick"
+
         elif name == "overstock_norm":
             name = "overstock"
+        
+        elif name == "directors_cut":
+            name = "director's_cut"
 
         new_voucher = Voucher(
             file_num = file_number,

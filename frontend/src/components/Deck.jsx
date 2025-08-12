@@ -18,7 +18,11 @@ function Deck(props){
         list.push(deck + ` Deck: Wins: ${wins} Losses: ${losses}`)
     })
     return list.map((e, index) => {
-        return <p key={index} className="decks">{e}</p>
+        let name = e.substring(0, e.indexOf(":"))
+        return <>
+            <p key={index} className="decks">{e}</p>
+            <img src={`../images/decks/${name}.webp`} alt={`Image of ${name}`} />
+        </>
     })
 }
 export default Deck

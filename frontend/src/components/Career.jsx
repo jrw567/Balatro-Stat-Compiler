@@ -1,5 +1,5 @@
 function Career(props){
-    if(props.list.length == 0)
+    if(props.list.length == 0 || props.list[0] == undefined)
         return <></>
     let list = []
     const under_regex = /_/g //matches all underscores

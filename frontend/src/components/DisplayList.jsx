@@ -2,6 +2,7 @@ import Career from "./Career"
 import Deck from "./Deck"
 import Joker from "./Joker"
 import Other from "./Other"
+import "../css/DisplayList.css"
 
 function DisplayList(props){
     if(props.list == null || props.item == null|| props.list.length == 0)

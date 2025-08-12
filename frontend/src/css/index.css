@@ -1,11 +1,10 @@
-/* need to credit */
 @font-face {
     font-family: 'm6x11';
     src: url(../fonts/m6x11.ttf);
 }
 html, body{
     min-height: 100%;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 #root{
     display: grid;
