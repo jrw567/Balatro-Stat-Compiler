@@ -23,11 +23,17 @@ function Joker(props){
             joker = joker.replace(name_regex, char => char.toUpperCase())
         }
         joker = joker.replace(" The ", " the ")
-        joker = joker.replace(" In ", " in ")
+        joker = joker.replace(" In", "-In")
         list.push(joker + `: Rounds: ${count} Wins: ${wins} Losses: ${losses}`)
     })
     return list.map((e, index) => {
-        return <p key={index} className="jokers">{e}</p>
+        let name = e.substring(0, e.indexOf(":"))
+        let filePath = "../images/jokers/" + name + ".webp"
+        console.log(filePath)
+        return <>
+            <p key={index} className="jokers">{e}</p>
+            <img src={filePath} alt="" />
+        </>
     })
 }
 export default Joker

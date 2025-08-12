@@ -21,7 +21,7 @@ def readFile(file_number):
 
     #List of Jokers whose names are followed by Joker ie. Abstract Joker but aren't listed as such in the save file
     name_joker = ["abstract", "ancient", "burnt", "clever", "crafty", "crazy", "devious", "droll", "faceless", "glass", "golden", "half", "invisible", "jolly", "mad", "marble", "sly", "smeared", "space", 
-                  "square", "stencil", "stone", "wee", "wily", "zany"]
+                  "square", "stone", "wee", "wily", "zany"]
     
     #List of Jokers whose names start with The ie. The Duo but aren't listed as such in the save file
     the_joker = ["duo", "family", "idol", "order", "tribe", "trio"]
@@ -216,6 +216,21 @@ def readFile(file_number):
         
         elif name == "riff_raff":
             name = "Riff-Raff"
+        
+        elif name == "gluttenous_joker":
+            name = "gluttonous_joker"
+
+        elif name == "drivers_license":
+            name = "driver's_license"
+
+        elif name == "stencil":
+            name = "joker_stencil"
+
+        elif name == "todo_list":
+            name = "to_do_list"
+        
+        elif name == "caino":
+            name = "canio"
 
         new_joker = Joker(
             file_num = file_number,
