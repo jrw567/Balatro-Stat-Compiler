@@ -3,6 +3,23 @@
     src: url(../fonts/m6x11.ttf);
 }
 
+#displayBox{
+    display: flex;
+    flex-direction: row;
+    place-content: center;
+    gap: 10px;
+    place-self: center;
+    background: rgb(51, 70, 75);
+    border-radius: 10px;
+    height: 75%;
+    max-width: 80%;
+    margin: 0 auto;
+}
+#displayBox img{
+    align-self: center;
+    transform: scale(1.25);
+}
+
 p {
     color: white;
     font-size: 16px;

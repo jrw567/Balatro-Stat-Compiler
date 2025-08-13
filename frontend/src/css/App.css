@@ -42,6 +42,8 @@ h2{
 nav{
     display: flex;
     place-content: center;
+    padding-top: 30px;
+    padding-bottom: 30px;
 }
 
  nav button{
