@@ -77,7 +77,8 @@ class Consumable(db.Model):
     def to_json(self):
         return {
             "name": self.consumable_name,
-            "count": self.consumable_count
+            "count": self.consumable_count,
+            "type": self.consumable_type
         }
     
 class Voucher(db.Model):

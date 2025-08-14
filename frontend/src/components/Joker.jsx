@@ -1,7 +1,5 @@
-import "../css/Joker.css"
-
 function Joker(props){
-    if(props.list.length == 0)
+    if(props.list.length == 0 || props.list[0] == undefined)
         return <></>
     let list = []
     const under_regex = /_/g //matches all underscores
@@ -42,9 +40,6 @@ function Joker(props){
 
     sortedList.forEach((e) =>{
         let joker = e.name
-        let count = e.count
-        let wins = e.wins
-        let losses = e.losses
         joker = joker.replace(under_regex, " ")
         while(joker.search(name_regex) >= 0){
             joker = joker.replace(name_regex, char => char.toUpperCase())
@@ -59,10 +54,10 @@ function Joker(props){
         if(index>=10) //remove and replace with proper page logic
             return
         let name = sortedList[index].name
-        return <div key={index} className="joker">
+        return <div key={index} className="singleDisplay">
             <img src={`../images/jokers/${name}.webp`} alt={`Image of ${name}`} />
             <p className="jokers">{`${name}: Rounds: ${sortedList[index].count} Wins: ${sortedList[index].wins} Losses: ${sortedList[index].losses}`}</p>
-            <div className="bar" style={{height: barHeight + '%'}}></div>
+            <div className="bar" style={{height: barHeight + '%', background: "rgb(95, 126, 133)"}}></div>
         </div>
     })
 

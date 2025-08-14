@@ -25,7 +25,6 @@ function App() {
           <h2>Save 1</h2>
           <form action={(e) =>{e.append("fileNum", 1), e.append("itemType", displayList.item), formAction(e)}} id="fileForm1">
             <input type="file" name="profile" accept=".jkr"/>
-            <br />
             <input type="submit" value={"Upload file"}/> 
             {/* set inner html to remove1 on file upload and browse when removed */}
             <span id='file1'></span>
@@ -39,7 +38,6 @@ function App() {
           <h2>Save 2</h2>
           <form action={(e) =>{e.append("fileNum", 2), e.append("itemType", displayList.item), formAction(e)}} id="fileForm2">
             <input type="file" name="profile" accept=".jkr"/>
-            <br />
             <input type="submit" value={"Upload file"}/>
           <span id='file2'></span>
           </form>
@@ -52,7 +50,6 @@ function App() {
           <h2>Save 3</h2>
           <form action={(e) =>{e.append("fileNum", 3), e.append("itemType", displayList.item), formAction(e)}} id="fileForm3">
             <input type="file" name="profile" accept=".jkr"/>
-            <br />
             <input type="submit" value={"Upload file"}/>
             <span id='file3'></span>
           </form>
@@ -72,7 +69,6 @@ function App() {
           <button onClick={() => { getList(total, "spectrals").then((rsp) => setDisplayList({list: rsp, item:"spectrals"}))}}>Spectrals</button>
           <button onClick={() => { getList(total, "vouchers").then((rsp) => setDisplayList({list: rsp, item:"vouchers"}))}}>Vouchers</button>
         </nav>
-        <br />
         <DisplayList list={displayList.list} item={displayList.item}/>
       </div>
       <div id="footer">

@@ -5,7 +5,7 @@ import Other from "./Other"
 import "../css/DisplayList.css"
 
 function DisplayList(props){
-    if(props.list == null || props.item == null|| props.list.length == 0)
+    if(props.list == null || props.item == null || props.list.length == 0)
         return <div id="displayBox">
             <p>Insert description of how the application works</p>
         </div>
