@@ -71,6 +71,7 @@ function App() {
         </nav>
         <DisplayList list={displayList.list} item={displayList.item}/>
       </div>
+      
       <div id="footer">
         <footer>All assets used are property of LocalThunk and Playstack. m6x11 font by: <a href="https://managore.itch.io/m6x11">Daniel Linssen</a></footer>
       </div>

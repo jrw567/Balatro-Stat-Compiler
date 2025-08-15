@@ -95,7 +95,6 @@ function Other(props){
         })
     } else{
         return sortedList.map((e, index) => {
-            console.log(sortedList[index])
             let name = sortedList[index].name
             let max = sortedList[0].count
             let barHeight = sortedList[index].count/max * 65

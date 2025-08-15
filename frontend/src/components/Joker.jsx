@@ -48,15 +48,22 @@ function Joker(props){
         joker = joker.replace(" In", "-In")
         e.name = joker
     })
-    return sortedList.map((e, index) => {
+    let pageList = []
+    let minPage = 10 * (props.page - 1)
+    let maxPage = 10 * props.page - 1
+    for(let i = minPage; i <= maxPage; i++){
+        pageList.push(sortedList[i])
+    }
+
+    return pageList.map((e, index) => {
         let max = sortedList[0].count
-        let barHeight = sortedList[index].count/max * 65
+        let barHeight = pageList[index].count/max * 65
         if(index>=10) //remove and replace with proper page logic
             return
-        let name = sortedList[index].name
+        let name = pageList[index].name
         return <div key={index} className="singleDisplay">
             <img src={`../images/jokers/${name}.webp`} alt={`Image of ${name}`} />
-            <p className="jokers">{`${name}: Rounds: ${sortedList[index].count} Wins: ${sortedList[index].wins} Losses: ${sortedList[index].losses}`}</p>
+            <p className="jokers">{`${name}: Rounds: ${pageList[index].count} Wins: ${pageList[index].wins} Losses: ${pageList[index].losses}`}</p>
             <div className="bar" style={{height: barHeight + '%', background: "rgb(95, 126, 133)"}}></div>
         </div>
     })
