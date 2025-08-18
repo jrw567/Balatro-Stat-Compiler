@@ -24,10 +24,13 @@ function App() {
         <div>
           <h2>Save 1</h2>
           <form action={(e) =>{e.append("fileNum", 1), e.append("itemType", displayList.item), formAction(e)}} id="fileForm1">
-            <input type="file" name="profile" accept=".jkr"/>
-            <input type="submit" value={"Upload file"}/> 
+            <label htmlFor="file1">Upload</label>
+            <input type="file" name="profile" accept=".jkr" id='file1' onChange={() =>{
+              if(document.getElementById("fileForm1"))
+                fileForm1.requestSubmit()
+            }}/>
             {/* set inner html to remove1 on file upload and browse when removed */}
-            <span id='file1'></span>
+            <span id='fileSpan1'></span>
           </form>
           <button id='remove1' onClick={() => {removeFile(1, displayList.item).then((rsp) => setDisplayList({list: rsp, item: displayList.item}))}}>Remove</button>
         </div>
@@ -37,9 +40,12 @@ function App() {
         <div>
           <h2>Save 2</h2>
           <form action={(e) =>{e.append("fileNum", 2), e.append("itemType", displayList.item), formAction(e)}} id="fileForm2">
-            <input type="file" name="profile" accept=".jkr"/>
-            <input type="submit" value={"Upload file"}/>
-          <span id='file2'></span>
+            <label htmlFor="file2">Upload</label>
+            <input type="file" name="profile" accept=".jkr" id='file2' onChange={() =>{
+              if(document.getElementById("fileForm2"))
+                fileForm1.requestSubmit()
+            }}/>
+          <span id='fileSpan2'></span>
           </form>
           <button id='remove2' onClick={() => {removeFile(2, displayList.item).then((rsp) => setDisplayList({list: rsp, item: displayList.item}))}}>Remove</button>
         </div>
@@ -49,9 +55,12 @@ function App() {
         <div>
           <h2>Save 3</h2>
           <form action={(e) =>{e.append("fileNum", 3), e.append("itemType", displayList.item), formAction(e)}} id="fileForm3">
-            <input type="file" name="profile" accept=".jkr"/>
-            <input type="submit" value={"Upload file"}/>
-            <span id='file3'></span>
+            <label htmlFor="file3">Upload</label>
+            <input type="file" name="profile" accept=".jkr" id='file3' onChange={() =>{
+              if(document.getElementById("fileForm3"))
+                fileForm1.requestSubmit()
+            }}/>
+            <span id='fileSpan3'></span>
           </form>
           <button id='remove3' onClick={() => {removeFile(3, displayList.item).then((rsp) => setDisplayList({list: rsp, item: displayList.item}))}}>Remove</button>
         </div>
