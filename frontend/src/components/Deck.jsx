@@ -32,17 +32,30 @@ function Deck(props){
 
     sortedList.forEach((e) =>{
         let deck = e.name
-        e.name = deck.replace(deck.charAt(0), deck.charAt(0).toUpperCase()) + " " + "Deck"
+        e.name = deck.replace(deck.charAt(0), deck.charAt(0).toUpperCase())
+        if(!e.name.includes("Deck"))
+            e.name = e.name + " " + "Deck"
     })
-    return sortedList.map((e, index) => {
+    let pageList = []
+    let minPage = 10 * (props.page - 1)
+    let maxPage = 10 * props.page - 1
+    for(let i = minPage; i <= maxPage; i++){
+        if(sortedList[i] == null)
+            continue
+        pageList.push(sortedList[i])
+    }
+    console.log(sortedList)
+    return pageList.map((e, index) => {
         let max = sortedList[0].wins
-        let barHeight = sortedList[index].wins/max * 65
-        let name = sortedList[index].name
+        if(max == 0)
+            return
+        let barHeight = pageList[index].wins/max * 65
+        let name = pageList[index].name
         if(index>=10) //remove and replace with proper page logic
             return
         return <div key={index} className="singleDisplay">
             <img src={`../images/decks/${name}.webp`} alt={`Image of ${name}`} />
-            <p className="decks">{`${name}: Wins: ${sortedList[index].wins} Losses: ${sortedList[index].losses}`}</p>
+            <p className="decks">{`${name}: Wins: ${pageList[index].wins} Losses: ${pageList[index].losses}`}</p>
             <div className="bar" style={{height: barHeight + '%', background: "rgb(95, 126, 133)"}}></div>
         </div>
     })

@@ -52,11 +52,15 @@ function Joker(props){
     let minPage = 10 * (props.page - 1)
     let maxPage = 10 * props.page - 1
     for(let i = minPage; i <= maxPage; i++){
+        if(sortedList[i] == null)
+            continue
         pageList.push(sortedList[i])
     }
 
     return pageList.map((e, index) => {
         let max = sortedList[0].count
+        if(max == 0)
+            return
         let barHeight = pageList[index].count/max * 65
         if(index>=10) //remove and replace with proper page logic
             return
