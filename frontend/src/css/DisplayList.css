@@ -20,24 +20,20 @@
     display: flex;
     gap: 10px;
     flex-direction: row;
-    justify-self: center;
     font-size: 16px;
     height: 6%;
-    place-content: center;
-    /* background-color: white; */
 }
 .key div{
     display: inline-block;
     background-color: rgb(255, 143, 0);
     align-self: center;
-    height: 15px;
-    width: 15px;
+    height: 20px;
+    width: 20px;
 }
 #displayBox span{
     align-self: center;
     color: white;
-    font-size: 16px;
-    place-content: center;
+    font-size: 32px;
 }
 #displayBox img{
     align-self: center;
@@ -72,7 +68,34 @@ p {
 }
 
 #page{
+    position: relative;
+    top: 1%;
     display: flex;
+    gap: 10px;
     place-content: center;
+    align-self: center;
     color: white;
+}
+#page span{
+    background-color: rgb(255, 68, 59);
+    box-shadow: 5px 7px 3px rgba(0, 0, 0, 0.445);
+    text-shadow: 3px 3px 1px rgba(0, 0, 0, 0.445);
+    padding-left: 4px;
+    padding-right: 4px;
+    font-size: 32px;
+    place-content: center;
+    border-radius: 10px;
+}
+#page button{
+    background: rgb(255, 68, 59);
+    color: white;
+    text-shadow: 3px 3px 1px rgba(0, 0, 0, 0.445);
+    font-family: 'm6x11';
+    font-size: 32px;
+    border: none;
+    border-radius: 20px;
+    padding: 8px;
+    margin-left: 4px;
+    margin-right: 4px;
+    box-shadow: 5px 7px 3px rgba(0, 0, 0, 0.445);
 }

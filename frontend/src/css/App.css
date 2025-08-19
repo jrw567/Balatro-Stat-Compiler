@@ -102,12 +102,12 @@ nav{
  }
 
 
- nav button:hover, .remove:hover, .save:hover{
+ nav button:hover, .remove:hover, .save:hover, #page button:hover{
     background: rgb(161, 34, 31);
     cursor: pointer;
  }
 
- nav button:active, #fileInput button:active, .remove:active{
+ nav button:active, #fileInput button:active, .remove:active, #page button:active{
     transform: translate3D(5px, 7px, 0px);
     box-shadow: none;
  }

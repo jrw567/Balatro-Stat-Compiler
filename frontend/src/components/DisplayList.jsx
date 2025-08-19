@@ -29,11 +29,17 @@ function DisplayList(props){
         return <div id="displayBox"><Career list={props.list}/></div>
     else if(props.item == "decks")
         return <>
-            <div id="displayBox"><Deck list={props.list} page={page}/></div>
+            <div id="displayBox">
+                <div className="key">
+                        <div></div>
+                        <span>Total wins with this deck</span>
+                </div>
+                <Deck list={props.list} page={page}/>
+                </div>
             <div id='page'>
-                    <button onClick={() => {decrementPage()}}>Left</button>
+                    <button onClick={() => {decrementPage()}}>&lt;</button>
                     <span>{`Page ${page}/2`}</span>
-                    <button onClick={() => {incrementPage()}}>Right</button>
+                    <button onClick={() => {incrementPage()}}>&gt;</button>
             </div>
         </> 
     else if(props.item == "jokers")
@@ -41,27 +47,38 @@ function DisplayList(props){
                 <div id="displayBox">
                     <div className="key">
                         <div></div>
-                        <span>number of rounds played with card</span>
-                        </div>
+                        <span>Total completed rounds with this card</span>
+                    </div>
                     
                     <Joker list={props.list} page={page}/>
                     </div>
                 <div id='page'>
-                    <button onClick={() => {decrementPage()}}>Left</button>
+                    <button onClick={() => {decrementPage()}}>&lt;</button>
                     <span>{`Page ${page}/15`}</span>
-                    <button onClick={() => {incrementPage()}}>Right</button>
+                    <button onClick={() => {incrementPage()}}>&gt;</button>
                 </div>
         </>
-     else if(props.item == "hands" || props.item == "consumables" || props.item == "tarots" || props.item == "planets" || props.item == "spectrals" || props.item == "vouchers")
+    else if(props.item == "hands" || props.item == "consumables" || props.item == "tarots" || props.item == "planets" || props.item == "spectrals" || props.item == "vouchers"){
+        let keyMessage = "Number of times this card has been used"
+        if(props.item == "vouchers")
+            keyMessage = "Number of times this Voucher has been redeemed"
+    
+        
         return <>
-            <div id="displayBox"><Other list={props.list} item={props.item} page={page}/></div>
+            <div id="displayBox">
+                <div className="key">
+                        <div></div>
+                        <span>{keyMessage}</span>
+                </div>
+                <Other list={props.list} item={props.item} page={page}/>
+                </div>
             <div id='page'>
-                    <button onClick={() => {decrementPage()}}>Left</button>
+                    <button onClick={() => {decrementPage()}}>&lt;</button>
                     <span>{`Page ${page}/15`}</span>
-                    <button onClick={() => {incrementPage()}}>Right</button>
+                    <button onClick={() => {incrementPage()}} >&gt;</button>
             </div>
         </>
-    else {
+    } else {
         return <div id="displayBox"><p className="error">An error has occurred. Please reload the site.</p></div>
     }
 }
