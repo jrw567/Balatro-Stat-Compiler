@@ -38,7 +38,14 @@ function DisplayList(props){
         </> 
     else if(props.item == "jokers")
         return <>
-                <div id="displayBox"><Joker list={props.list} page={page}/></div>
+                <div id="displayBox">
+                    <div className="key">
+                        <div></div>
+                        <span>number of rounds played with card</span>
+                        </div>
+                    
+                    <Joker list={props.list} page={page}/>
+                    </div>
                 <div id='page'>
                     <button onClick={() => {decrementPage()}}>Left</button>
                     <span>{`Page ${page}/15`}</span>

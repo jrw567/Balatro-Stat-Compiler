@@ -124,7 +124,7 @@ function Other(props){
                 color = "rgb(46,118,253)"
             }
             return <div key={index} className="singleDisplay">
-                <img src={`../images/consumables/${name}.webp`} alt={`Image of ${name}`} />
+                <img src={`../images/consumables/${name}.webp`} alt={`Image of ${name}`}/>
                 <p className={props.item}>{`${name}: Count: ${pageList[index].count}`}</p>
                 <div className="bar" style={{height: barHeight + '%', background: color}}></div>
             </div>

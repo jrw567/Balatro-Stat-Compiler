@@ -12,8 +12,32 @@
     background: rgb(51, 70, 75);
     border-radius: 10px;
     height: 75%;
-    max-width: 80%;
+    width: 80%;
     margin: 0 auto;
+}
+.key{
+    position: absolute;
+    display: flex;
+    gap: 10px;
+    flex-direction: row;
+    justify-self: center;
+    font-size: 16px;
+    height: 6%;
+    place-content: center;
+    /* background-color: white; */
+}
+.key div{
+    display: inline-block;
+    background-color: rgb(255, 143, 0);
+    align-self: center;
+    height: 15px;
+    width: 15px;
+}
+#displayBox span{
+    align-self: center;
+    color: white;
+    font-size: 16px;
+    place-content: center;
 }
 #displayBox img{
     align-self: center;

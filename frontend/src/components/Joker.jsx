@@ -66,7 +66,7 @@ function Joker(props){
             return
         let name = pageList[index].name
         return <div key={index} className="singleDisplay">
-            <img src={`../images/jokers/${name}.webp`} alt={`Image of ${name}`} />
+            <img src={`../images/jokers/${name}.webp`} alt={`Image of ${name}`}/>
             <p className="jokers">{`${name}: Rounds: ${pageList[index].count} Wins: ${pageList[index].wins} Losses: ${pageList[index].losses}`}</p>
             <div className="bar" style={{height: barHeight + '%', background: "rgb(95, 126, 133)"}}></div>
         </div>

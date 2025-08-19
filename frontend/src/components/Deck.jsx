@@ -54,7 +54,7 @@ function Deck(props){
         if(index>=10) //remove and replace with proper page logic
             return
         return <div key={index} className="singleDisplay">
-            <img src={`../images/decks/${name}.webp`} alt={`Image of ${name}`} />
+            <img src={`../images/decks/${name}.webp`} alt={`Image of ${name}`}/>
             <p className="decks">{`${name}: Wins: ${pageList[index].wins} Losses: ${pageList[index].losses}`}</p>
             <div className="bar" style={{height: barHeight + '%', background: "rgb(95, 126, 133)"}}></div>
         </div>
