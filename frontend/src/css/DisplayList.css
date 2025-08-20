@@ -29,6 +29,14 @@
     align-self: center;
     height: 20px;
     width: 20px;
+    margin-bottom: 6px;
+}
+.decks, .jokers, .consumables, .tarots, .planets, .spectrals, .vouchers {
+    color: rgb(255, 143, 0);
+    text-shadow: 3px 3px 1px rgba(0, 0, 0, 0.445);
+    font-size: 32px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 #displayBox span{
     align-self: center;
@@ -84,7 +92,9 @@ p {
     padding-right: 4px;
     font-size: 32px;
     place-content: center;
+    text-align: center;
     border-radius: 10px;
+    min-width: 144px;
 }
 #page button{
     background: rgb(255, 68, 59);

@@ -55,7 +55,8 @@ function Deck(props){
             return
         return <div key={index} className="singleDisplay">
             <img src={`../images/decks/${name}.webp`} alt={`Image of ${name}`}/>
-            <p className="decks">{`${name}: Wins: ${pageList[index].wins} Losses: ${pageList[index].losses}`}</p>
+            {/* <p className="decks">{`${name}: Wins: ${pageList[index].wins} Losses: ${pageList[index].losses}`}</p> */}
+            <p className="decks">{pageList[index].wins}</p>
             <div className="bar" style={{height: barHeight + '%', background: "rgb(95, 126, 133)"}}></div>
         </div>
     })

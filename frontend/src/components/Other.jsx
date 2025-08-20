@@ -102,7 +102,8 @@ function Other(props){
                 return
             return <div key={index} className="singleDisplay">
                 <img src={`../images/vouchers/${name}.webp`} alt={`Image of ${name}`} />
-                <p className={props.item}>{`${name}: Count: ${pageList[index].count}`}</p>
+                {/* <p className={props.item}>{`${name}: Count: ${pageList[index].count}`}</p> */}
+                <p className={props.item}>{pageList[index].count}</p>
                 <div className="bar" style={{height: barHeight + '%', background: "rgb(255, 86, 17)"}}></div>
             </div>
         })
@@ -125,7 +126,8 @@ function Other(props){
             }
             return <div key={index} className="singleDisplay">
                 <img src={`../images/consumables/${name}.webp`} alt={`Image of ${name}`}/>
-                <p className={props.item}>{`${name}: Count: ${pageList[index].count}`}</p>
+                {/* <p className={props.item}>{`${name}: Count: ${pageList[index].count}`}</p> */}
+                <p className={props.item}>{pageList[index].count}</p>
                 <div className="bar" style={{height: barHeight + '%', background: color}}></div>
             </div>
         })

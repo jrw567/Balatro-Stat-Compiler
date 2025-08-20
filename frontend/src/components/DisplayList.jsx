@@ -63,7 +63,12 @@ function DisplayList(props){
         if(props.item == "vouchers")
             keyMessage = "Number of times this Voucher has been redeemed"
     
-        
+        if(props.item == "hands")
+            return <>
+            <div id="displayBox">
+                <Other list={props.list} item={props.item} page={page}/>
+                </div>
+            </>
         return <>
             <div id="displayBox">
                 <div className="key">

@@ -43,7 +43,7 @@ function App() {
             <label htmlFor="file2">Upload</label>
             <input type="file" name="profile" accept=".jkr" id='file2' onChange={() =>{
               if(document.getElementById("fileForm2"))
-                fileForm1.requestSubmit()
+                fileForm2.requestSubmit()
             }}/>
           <span id='fileSpan2'></span>
           </form>
@@ -58,7 +58,7 @@ function App() {
             <label htmlFor="file3">Upload</label>
             <input type="file" name="profile" accept=".jkr" id='file3' onChange={() =>{
               if(document.getElementById("fileForm3"))
-                fileForm1.requestSubmit()
+                fileForm3.requestSubmit()
             }}/>
             <span id='fileSpan3'></span>
           </form>
@@ -82,7 +82,10 @@ function App() {
       </div>
       
       <div id="footer">
-        <footer>All assets used are property of LocalThunk and Playstack. m6x11 font by: <a href="https://managore.itch.io/m6x11">Daniel Linssen</a></footer>
+        
+          <p>All assets used are property of LocalThunk and Playstack. m6x11 font by: <a href="https://managore.itch.io/m6x11">Daniel Linssen</a></p>
+          <a href="https://github.com/jrw567/Balatro-Stat-Compiler">View code on GitHub</a>
+          
       </div>
     </>
     

@@ -89,11 +89,13 @@ nav{
  }
 
  #footer{
-    align-self: center;
+    position: relative;
+    place-self: center;
     text-align: center;
     color: white;
     text-shadow: 3px 3px 1px rgba(0, 0, 0, 0.445);
     font-size: 16px;
+    bottom: 20px;
     grid-area: footer;
  }
 
