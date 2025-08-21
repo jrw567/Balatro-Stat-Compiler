@@ -10,6 +10,9 @@ function DisplayList(props){
     const [filter, setFilter] = useState("") //need to have key updated and also need to properly update filter
 
     let pageLimit = 0
+
+    let keyString = ""
+
     if(props.item == "decks" || props.item == "planets" || props.item == "spectrals")
             pageLimit = 2
         else if(props.item == "jokers")
@@ -24,8 +27,9 @@ function DisplayList(props){
             pageLimit = 1
 
     useEffect (() => {
-        if(props.item == "deck")
+        if(props.item == "decks")
             setFilter("wins")
+            
         else if(props.item == "jokers")
             setFilter("count")
         setPage(1)
@@ -47,34 +51,44 @@ function DisplayList(props){
         </div>
     if(props.item == "career")
         return <div id="displayBox"><Career list={props.list}/></div>
-    else if(props.item == "decks")
+    else if(props.item == "decks"){
+        if(filter == "wins")
+            keyString = "Total wins with this deck"
+        else
+            keyString = "Total losses with this deck"
         return <>
             <div id="displayBox">
                 <div className="key">
-                        <div></div>
-                        <span>Total wins with this deck</span>
+                    <div></div>
+                    <span>{keyString}</span>
                 </div>
                 <div className="filter">
                         <button onClick={() => {setFilter("wins")}}>Wins</button>
                         <button onClick={() => {setFilter("losses")}}>Losses</button>
                 </div>
                 <Deck list={props.list} page={page}  filter={filter}/>
-                </div>
+            </div>
             <div id='page'>
                     <button onClick={() => {decrementPage()}}>&lt;</button>
                     <span>{`Page ${page}/${pageLimit}`}</span>
                     <button onClick={() => {incrementPage()}}>&gt;</button>
             </div>
         </> 
-    else if(props.item == "jokers")
+    } else if(props.item == "jokers"){
+        if(filter == "count")
+            keyString = "Total completed rounds with this card"
+        else if(filter == "wins")
+            keyString = "Total wins with this card"
+        else
+            keyString = "Total losses with this card"
         return <>
                 <div id="displayBox">
                     <div className="key">
                         <div></div>
-                        <span>Total completed rounds with this card</span>
+                        <span>{keyString}</span>
                     </div>
                     <div className="filter">
-                        <button onClick={() => {setFilter("rounds")}}>Rounds</button>
+                        <button onClick={() => {setFilter("count")}}>Rounds</button>
                         <button onClick={() => {setFilter("wins")}}>Wins</button>
                         <button onClick={() => {setFilter("losses")}}>Losses</button>
                     </div>
@@ -86,7 +100,7 @@ function DisplayList(props){
                     <button onClick={() => {incrementPage()}}>&gt;</button>
                 </div>
         </>
-    else if(props.item == "hands" || props.item == "consumables" || props.item == "tarots" || props.item == "planets" || props.item == "spectrals" || props.item == "vouchers"){
+    } else if(props.item == "hands" || props.item == "consumables" || props.item == "tarots" || props.item == "planets" || props.item == "spectrals" || props.item == "vouchers"){
         let keyMessage = "Number of times this card has been used"
         if(props.item == "vouchers")
             keyMessage = "Number of times this Voucher has been redeemed"

@@ -1,7 +1,6 @@
 function Deck(props){
     let filter1 = ""
     let filter2 = ""
-    console.log(props.filter)
     if(props.list.length == 0 || props.list[0] == undefined)
         return <></>
     let list = []
@@ -16,7 +15,7 @@ function Deck(props){
             filter2 = b.losses
         }
         else
-            return <></>
+            return
 
         if(filter1 > filter2)
             return -1
@@ -75,7 +74,8 @@ function Deck(props){
             displayValue = pageList[index].losses
         } 
         else
-            return <></>
+            return
+
         if(max == 0)
             return
         
