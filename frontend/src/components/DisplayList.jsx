@@ -7,8 +7,27 @@ import { useState, useEffect } from "react"
 
 function DisplayList(props){
     const [page, setPage] = useState(1)
+    const [filter, setFilter] = useState("") //need to have key updated and also need to properly update filter
+
+    let pageLimit = 0
+    if(props.item == "decks" || props.item == "planets" || props.item == "spectrals")
+            pageLimit = 2
+        else if(props.item == "jokers")
+            pageLimit = 15
+        else if(props.item == "consumables")
+            pageLimit = 6
+        else if(props.item == "tarots")
+            pageLimit = 3
+        else if(props.item == "vouchers")
+            pageLimit = 4
+        else
+            pageLimit = 1
 
     useEffect (() => {
+        if(props.item == "deck")
+            setFilter("wins")
+        else if(props.item == "jokers")
+            setFilter("count")
         setPage(1)
   }, [props.item])
 
@@ -18,7 +37,8 @@ function DisplayList(props){
     }
 
     function incrementPage(){
-        if(page < 15) //change to variable dependant on props.item****************
+        
+        if(page < pageLimit) //change to variable dependant on props.item****************
             setPage(page + 1)
     }
     if(props.list == null || props.item == null || props.list.length == 0)
@@ -34,11 +54,15 @@ function DisplayList(props){
                         <div></div>
                         <span>Total wins with this deck</span>
                 </div>
-                <Deck list={props.list} page={page}/>
+                <div className="filter">
+                        <button onClick={() => {setFilter("wins")}}>Wins</button>
+                        <button onClick={() => {setFilter("losses")}}>Losses</button>
+                </div>
+                <Deck list={props.list} page={page}  filter={filter}/>
                 </div>
             <div id='page'>
                     <button onClick={() => {decrementPage()}}>&lt;</button>
-                    <span>{`Page ${page}/2`}</span>
+                    <span>{`Page ${page}/${pageLimit}`}</span>
                     <button onClick={() => {incrementPage()}}>&gt;</button>
             </div>
         </> 
@@ -49,12 +73,16 @@ function DisplayList(props){
                         <div></div>
                         <span>Total completed rounds with this card</span>
                     </div>
-                    
-                    <Joker list={props.list} page={page}/>
+                    <div className="filter">
+                        <button onClick={() => {setFilter("rounds")}}>Rounds</button>
+                        <button onClick={() => {setFilter("wins")}}>Wins</button>
+                        <button onClick={() => {setFilter("losses")}}>Losses</button>
+                    </div>
+                    <Joker list={props.list} page={page} filter={filter}/>
                     </div>
                 <div id='page'>
                     <button onClick={() => {decrementPage()}}>&lt;</button>
-                    <span>{`Page ${page}/15`}</span>
+                    <span>{`Page ${page}/${pageLimit}`}</span>
                     <button onClick={() => {incrementPage()}}>&gt;</button>
                 </div>
         </>
@@ -79,7 +107,7 @@ function DisplayList(props){
                 </div>
             <div id='page'>
                     <button onClick={() => {decrementPage()}}>&lt;</button>
-                    <span>{`Page ${page}/15`}</span>
+                    <span>{`Page ${page}/${pageLimit}`}</span>
                     <button onClick={() => {incrementPage()}} >&gt;</button>
             </div>
         </>
