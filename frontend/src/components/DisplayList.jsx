@@ -63,6 +63,7 @@ function DisplayList(props){
                     <span>{keyString}</span>
                 </div>
                 <div className="filter">
+                        <span>Sort by: </span>
                         <button onClick={() => {setFilter("wins")}}>Wins</button>
                         <button onClick={() => {setFilter("losses")}}>Losses</button>
                 </div>
@@ -88,6 +89,7 @@ function DisplayList(props){
                         <span>{keyString}</span>
                     </div>
                     <div className="filter">
+                        <span>Sort by: </span>
                         <button onClick={() => {setFilter("count")}}>Rounds</button>
                         <button onClick={() => {setFilter("wins")}}>Wins</button>
                         <button onClick={() => {setFilter("losses")}}>Losses</button>

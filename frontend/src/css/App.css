@@ -65,7 +65,7 @@ nav{
     padding-bottom: 30px;
 }
 
- nav button, .save{
+ nav button, .save, .filter button{
     background: rgb(255, 68, 59);
     color: white;
     text-shadow: 3px 3px 1px rgba(0, 0, 0, 0.445);
@@ -104,12 +104,12 @@ nav{
  }
 
 
- nav button:hover, .remove:hover, .save:hover, #page button:hover{
+ nav button:hover, .remove:hover, .save:hover, #page button:hover, .filter button:hover{
     background: rgb(161, 34, 31);
     cursor: pointer;
  }
 
- nav button:active, #fileInput button:active, .remove:active, #page button:active{
+ nav button:active, #fileInput button:active, .remove:active, #page button:active, .filter button:active{
     transform: translate3D(5px, 7px, 0px);
     box-shadow: none;
  }
