@@ -8,7 +8,7 @@ function App() {
 
   const [displayList, setDisplayList] = useState({list:[], item:"career"});
   const [firstRender, setFirstRender] = useState(true);
-  const [fileUploaded, setFileUploaded] = useState(false);
+  const [fileUploaded, setFileUploaded] = useState({bool:false, num:0});
 
   const[returnState, formAction] = useActionState(uploadFile, undefined);
 
@@ -19,18 +19,29 @@ function App() {
   }, [returnState])
 
   useEffect (() => {
-    if(fileUploaded){
-      document.getElementById("label1").style.background = "grey"
-      document.getElementById("file1").setAttribute("disabled", "")
-      document.getElementById("remove1").style.background = "rgb(255, 68, 59)"
-      document.getElementById("remove1").removeAttribute("disabled")
+    if(firstRender && document.getElementById("#file1") && document.getElementById("#file2") && document.getElementById("#file3")){
+      for(let i = 1; i <= 3; i++){
+        document.getElementById(`label${i}`).style.background = "rgb(46,118,253)"
+        document.getElementById(`file${i}`).removeAttribute("disabled")
+        document.getElementById(`remove${i}`).style.background = "grey"
+        document.getElementById(`remove${i}`).setAttribute("disabled", "")
+      }
     }
-    else {
-      document.getElementById("label1").style.background = "rgb(46,118,253)"
-      document.getElementById("file1").removeAttribute("disabled")
-      document.getElementById("remove1").style.background = "grey"
-      document.getElementById("remove1").setAttribute("disabled", "")
+    if(!firstRender){
+      if(fileUploaded.bool){
+        document.getElementById(`label${fileUploaded.num}`).style.background = "grey"
+        document.getElementById(`file${fileUploaded.num}`).setAttribute("disabled", "")
+        document.getElementById(`remove${fileUploaded.num}`).style.background = "rgb(255, 68, 59)"
+        document.getElementById(`remove${fileUploaded.num}`).removeAttribute("disabled")
+      }
+      else {
+        document.getElementById(`label${fileUploaded.num}`).style.background = "rgb(46,118,253)"
+        document.getElementById(`file${fileUploaded.num}`).removeAttribute("disabled")
+        document.getElementById(`remove${fileUploaded.num}`).style.background = "grey"
+        document.getElementById(`remove${fileUploaded.num}`).setAttribute("disabled", "")
+      }
     }
+    
   }, [fileUploaded])
   
   return (
@@ -42,7 +53,7 @@ function App() {
           <form action={(e) =>{
             e.append("fileNum", 1)
             e.append("itemType", displayList.item)
-            setFileUploaded(true)
+            setFileUploaded({bool: true, num: 1})
             formAction(e)}} id="fileForm1">
             <label id="label1" htmlFor="file1">Upload</label>
             <input type="file" name="profile" accept=".jkr" id='file1' onChange={() =>{
@@ -55,7 +66,7 @@ function App() {
           </form>
           <button id='remove1' onClick={() => {
             removeFile(1, displayList.item).then((rsp) => setDisplayList({list: rsp, item: displayList.item}))
-            setFileUploaded(false)
+            setFileUploaded({bool: false, num: 1})
             }}>Remove</button>
         </div>
         
@@ -63,30 +74,44 @@ function App() {
 
         <div>
           <button className="save">Save 2</button>
-          <form action={(e) =>{e.append("fileNum", 2), e.append("itemType", displayList.item), formAction(e)}} id="fileForm2">
-            <label htmlFor="file2">Upload</label>
+          <form action={(e) =>{
+            e.append("fileNum", 2)
+            e.append("itemType", displayList.item)
+            setFileUploaded({bool: true, num: 2})
+            formAction(e)}} id="fileForm2">
+            <label id="label2" htmlFor="file2">Upload</label>
             <input type="file" name="profile" accept=".jkr" id='file2' onChange={() =>{
               if(document.getElementById("fileForm2"))
                 fileForm2.requestSubmit()
             }}/>
           <span id='fileSpan2'></span>
           </form>
-          <button id='remove2' disabled onClick={() => {removeFile(2, displayList.item).then((rsp) => setDisplayList({list: rsp, item: displayList.item}))}}>Remove</button>
+          <button id='remove2' onClick={() => {
+            removeFile(2, displayList.item).then((rsp) => setDisplayList({list: rsp, item: displayList.item}))
+            setFileUploaded({bool: false, num: 2})
+            }}>Remove</button>
         </div>
         
       
       
         <div>
           <button className="save">Save 3</button>
-          <form action={(e) =>{e.append("fileNum", 3), e.append("itemType", displayList.item), formAction(e)}} id="fileForm3">
-            <label htmlFor="file3">Upload</label>
+          <form action={(e) =>{
+            e.append("fileNum", 3)
+            e.append("itemType", displayList.item)
+            setFileUploaded({bool: true, num: 3})
+            formAction(e)}} id="fileForm3">
+            <label id="label3" htmlFor="file3">Upload</label>
             <input type="file" name="profile" accept=".jkr" id='file3' onChange={() =>{
               if(document.getElementById("fileForm3"))
                 fileForm3.requestSubmit()
             }}/>
             <span id='fileSpan3'></span>
           </form>
-          <button id='remove3' disabled onClick={() => {removeFile(3, displayList.item).then((rsp) => setDisplayList({list: rsp, item: displayList.item}))}}>Remove</button>
+          <button id='remove3' onClick={() => {
+            removeFile(3, displayList.item).then((rsp) => setDisplayList({list: rsp, item: displayList.item}))
+            setFileUploaded({bool: false, num: 3})
+        }}>Remove</button>
         </div>
       </div>
       
