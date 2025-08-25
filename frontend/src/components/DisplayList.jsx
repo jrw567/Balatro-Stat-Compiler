@@ -50,7 +50,7 @@ function DisplayList(props){
             <p>Insert description of how the application works</p>
         </div>
     if(props.item == "career")
-        return <div id="displayBox"><Career list={props.list}/></div>
+        return <div id="displayBox"  style={{display: "block"}}><Career list={props.list}/></div>
     else if(props.item == "decks"){
         if(filter == "wins")
             keyString = "Total wins with this deck"
@@ -109,7 +109,7 @@ function DisplayList(props){
     
         if(props.item == "hands")
             return <>
-            <div id="displayBox">
+            <div id="displayBox" style={{display: "block"}}>
                 <Other list={props.list} item={props.item} page={page}/>
                 </div>
             </>

@@ -8,6 +8,7 @@ function App() {
 
   const [displayList, setDisplayList] = useState({list:[], item:"career"});
   const [firstRender, setFirstRender] = useState(true);
+  const [fileUploaded, setFileUploaded] = useState(false);
 
   const[returnState, formAction] = useActionState(uploadFile, undefined);
 
@@ -16,6 +17,21 @@ function App() {
       setDisplayList({list: returnState, item: displayList.item})
     setFirstRender(false)
   }, [returnState])
+
+  useEffect (() => {
+    if(fileUploaded){
+      document.getElementById("label1").style.background = "grey"
+      document.getElementById("file1").setAttribute("disabled", "")
+      document.getElementById("remove1").style.background = "rgb(255, 68, 59)"
+      document.getElementById("remove1").removeAttribute("disabled")
+    }
+    else {
+      document.getElementById("label1").style.background = "rgb(46,118,253)"
+      document.getElementById("file1").removeAttribute("disabled")
+      document.getElementById("remove1").style.background = "grey"
+      document.getElementById("remove1").setAttribute("disabled", "")
+    }
+  }, [fileUploaded])
   
   return (
     <>
@@ -23,16 +39,24 @@ function App() {
       <div id='fileInput'>
         <div>
           <button className="save">Save 1</button>
-          <form action={(e) =>{e.append("fileNum", 1), e.append("itemType", displayList.item), formAction(e)}} id="fileForm1">
-            <label htmlFor="file1">Upload</label>
+          <form action={(e) =>{
+            e.append("fileNum", 1)
+            e.append("itemType", displayList.item)
+            setFileUploaded(true)
+            formAction(e)}} id="fileForm1">
+            <label id="label1" htmlFor="file1">Upload</label>
             <input type="file" name="profile" accept=".jkr" id='file1' onChange={() =>{
-              if(document.getElementById("fileForm1"))
+              if(document.getElementById("fileForm1")){
                 fileForm1.requestSubmit()
+              }
             }}/>
             {/* set inner html to remove1 on file upload and browse when removed */}
             <span id='fileSpan1'></span>
           </form>
-          <button className='remove' onClick={() => {removeFile(1, displayList.item).then((rsp) => setDisplayList({list: rsp, item: displayList.item}))}}>Remove</button>
+          <button id='remove1' onClick={() => {
+            removeFile(1, displayList.item).then((rsp) => setDisplayList({list: rsp, item: displayList.item}))
+            setFileUploaded(false)
+            }}>Remove</button>
         </div>
         
       
@@ -47,7 +71,7 @@ function App() {
             }}/>
           <span id='fileSpan2'></span>
           </form>
-          <button className='remove' onClick={() => {removeFile(2, displayList.item).then((rsp) => setDisplayList({list: rsp, item: displayList.item}))}}>Remove</button>
+          <button id='remove2' disabled onClick={() => {removeFile(2, displayList.item).then((rsp) => setDisplayList({list: rsp, item: displayList.item}))}}>Remove</button>
         </div>
         
       
@@ -62,7 +86,7 @@ function App() {
             }}/>
             <span id='fileSpan3'></span>
           </form>
-          <button className='remove' onClick={() => {removeFile(3, displayList.item).then((rsp) => setDisplayList({list: rsp, item: displayList.item}))}}>Remove</button>
+          <button id='remove3' disabled onClick={() => {removeFile(3, displayList.item).then((rsp) => setDisplayList({list: rsp, item: displayList.item}))}}>Remove</button>
         </div>
       </div>
       

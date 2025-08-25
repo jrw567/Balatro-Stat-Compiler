@@ -64,6 +64,8 @@ function Joker(props){
         joker = joker.replace(" The ", " the ")
         joker = joker.replace(" In", "-In")
         e.name = joker
+        let img = new Image()
+        img.src = `../images/jokers/${e.name}.webp`
     })
     let pageList = []
     let minPage = 10 * (props.page - 1)

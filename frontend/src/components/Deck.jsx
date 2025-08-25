@@ -49,6 +49,8 @@ function Deck(props){
         e.name = deck.replace(deck.charAt(0), deck.charAt(0).toUpperCase())
         if(!e.name.includes("Deck"))
             e.name = e.name + " " + "Deck"
+        let img = new Image()
+        img.src = `../images/decks/${e.name}.webp`
     })
     let pageList = []
     let minPage = 10 * (props.page - 1)

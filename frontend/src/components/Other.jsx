@@ -72,6 +72,11 @@ function Other(props){
             }
         }
         e.name = other
+        if(props.item != "hands"){
+            let img = new Image()
+            img.src = `../images/consumables/${e.name}.webp`
+        }
+        
     })
 
     let pageList = []
