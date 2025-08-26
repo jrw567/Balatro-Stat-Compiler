@@ -37,6 +37,7 @@
     display: flex;
     right: 3%;
     bottom: -8%;
+    z-index: 1;
 }
 
 .decks, .jokers, .consumables, .tarots, .planets, .spectrals, .vouchers {
@@ -77,6 +78,16 @@ p {
     width: 9%;
     bottom: 15px;
 }
+
+.handDisplay{
+    position: relative;
+    background: rgb(163, 172, 185);
+    border-radius: 10px;
+    width: 80%;
+    height: 6.25%;
+    margin: 0 auto;
+}
+
 
 .bar{
     width: 65%;

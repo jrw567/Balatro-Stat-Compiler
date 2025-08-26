@@ -41,10 +41,10 @@ function DisplayList(props){
     }
 
     function incrementPage(){
-        
         if(page < pageLimit) //change to variable dependant on props.item****************
             setPage(page + 1)
     }
+
     if(props.list == null || props.item == null || props.list.length == 0)
         return <div id="displayBox">
             <p>Insert description of how the application works</p>
@@ -109,7 +109,7 @@ function DisplayList(props){
     
         if(props.item == "hands")
             return <>
-            <div id="displayBox" style={{display: "block"}}>
+            <div id="displayBox" style={{display: "block", gap: 0}}>
                 <Other list={props.list} item={props.item} page={page}/>
                 </div>
             </>

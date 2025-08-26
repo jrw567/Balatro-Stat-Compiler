@@ -41,8 +41,47 @@ function App() {
         document.getElementById(`remove${fileUploaded.num}`).setAttribute("disabled", "")
       }
     }
-    
   }, [fileUploaded])
+
+  useEffect (() => {
+    if(document.querySelector(".marker")){
+      let list = document.querySelectorAll("nav button")
+      let index = ""
+      if(displayList.item == "career"){
+        index = 0
+      }
+      else if(displayList.item == "hands"){
+        index = 1
+      }
+      else if(displayList.item == "decks"){
+        index = 2
+      }
+      else if(displayList.item == "jokers"){
+        index = 3
+      }
+      else if(displayList.item == "consumables"){
+        index = 4
+      }
+      else if(displayList.item == "tarots"){
+        index = 5
+      }
+      else if(displayList.item == "planets"){
+        index = 6
+      }
+      else if(displayList.item == "spectrals"){
+        index = 7
+      }
+      else if(displayList.item == "vouchers"){
+        index = 8
+      }
+      let buttonRect = list[index].getBoundingClientRect()
+      let displayRect = document.querySelector("#display").getBoundingClientRect()
+      document.querySelector(".marker").style.left = `${(buttonRect.left - displayRect.left)}px`
+      document.querySelector(".marker").style.marginLeft = `${(buttonRect.right - buttonRect.left - 40)/2}px`
+      document.querySelector(".marker").style.marginRight = `${(buttonRect.right - buttonRect.left - 40)/2}px`
+    }
+    
+  }, [displayList.item])
   
   return (
     <>
@@ -116,6 +155,7 @@ function App() {
       </div>
       
       <div id='display'>
+        <img src="/images/arrow.svg" alt="" className="marker"/>
         <nav>
           <button onClick={() => { getList(total, "career").then((rsp) => setDisplayList({list: rsp, item:"career"}))}}>Career Stats</button>
           <button onClick={() => { getList(total, "hands").then((rsp) => setDisplayList({list: rsp, item:"hands"}))}}>Hand Stats</button>
@@ -127,7 +167,7 @@ function App() {
           <button onClick={() => { getList(total, "spectrals").then((rsp) => setDisplayList({list: rsp, item:"spectrals"}))}}>Spectrals</button>
           <button onClick={() => { getList(total, "vouchers").then((rsp) => setDisplayList({list: rsp, item:"vouchers"}))}}>Vouchers</button>
         </nav>
-        <DisplayList list={displayList.list} item={displayList.item}/>
+        <DisplayList list={displayList.list} item={displayList.item} bool={fileUploaded.bool}/>
       </div>
       
       <div id="footer">

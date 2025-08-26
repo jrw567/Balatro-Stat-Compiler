@@ -93,7 +93,10 @@ function Other(props){
             let name = sortedList[index].name
             if(sortedList[0].count == 0)
                 return
-            return <p key={index} className={props.item}>{`${name}: Count: ${sortedList[index].count}`}</p>
+            return <div key={index} className="handDisplay">
+                <p className={props.item}>{`${name}: Count: ${sortedList[index].count}`}</p>
+            </div>
+            
         })
     }
     else if(props.item == "vouchers"){
