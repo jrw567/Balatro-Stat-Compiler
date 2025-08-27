@@ -55,6 +55,7 @@
 #displayBox img{
     align-self: center;
     border-radius: 10px;
+    filter: drop-shadow(5px 5px 1px rgba(0, 0, 0, 0.445));
     height: 134px;
     width: 100px;
     color: transparent;
@@ -81,11 +82,45 @@ p {
 
 .handDisplay{
     position: relative;
+    display: flex;
+    /* place-content: center; */
+    text-shadow: 3px 3px 1px rgba(0, 0, 0, 0.445);
     background: rgb(163, 172, 185);
     border-radius: 10px;
-    width: 80%;
+    width: 25%;
     height: 6.25%;
     margin: 0 auto;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+.handDisplay p{
+    position: absolute;
+    left: 0px;
+    margin: 0;
+    font-size: 32px;
+    align-content: center;
+    text-align: center;
+}
+.handDisplay span{
+    position: absolute;
+    right: 26%;
+    height: 100%;
+    align-content: center;
+}
+.hands{
+    height: 100%;
+    width: 75%;
+}
+.count{
+    right: 0px;
+    background: rgb(30, 43, 45);
+    border-radius: 10px;
+    color: rgb(255, 143, 0);
+    height: 95%;
+    align-self: center;
+    justify-self: end;
+    right: 1px;
+    width: 25%;
 }
 
 

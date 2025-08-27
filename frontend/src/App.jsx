@@ -74,11 +74,16 @@ function App() {
       else if(displayList.item == "vouchers"){
         index = 8
       }
-      let buttonRect = list[index].getBoundingClientRect()
-      let displayRect = document.querySelector("#display").getBoundingClientRect()
-      document.querySelector(".marker").style.left = `${(buttonRect.left - displayRect.left)}px`
-      document.querySelector(".marker").style.marginLeft = `${(buttonRect.right - buttonRect.left - 40)/2}px`
-      document.querySelector(".marker").style.marginRight = `${(buttonRect.right - buttonRect.left - 40)/2}px`
+      if(!firstRender){
+        let buttonRect = list[index].getBoundingClientRect()
+        let displayRect = document.querySelector("#display").getBoundingClientRect()
+        document.querySelector(".marker").style.left = `${(buttonRect.left - displayRect.left)}px`
+        console.log(buttonRect.left - displayRect.left)
+        console.log((buttonRect.right - buttonRect.left - 40)/2)
+        document.querySelector(".marker").style.marginLeft = `${(buttonRect.right - buttonRect.left - 40)/2}px`
+        document.querySelector(".marker").style.marginRight = `${(buttonRect.right - buttonRect.left - 40)/2}px`
+      }
+      
     }
     
   }, [displayList.item])

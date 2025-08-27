@@ -109,7 +109,7 @@ function DisplayList(props){
     
         if(props.item == "hands")
             return <>
-            <div id="displayBox" style={{display: "block", gap: 0}}>
+            <div id="displayBox" style={{display: "block"}}>
                 <Other list={props.list} item={props.item} page={page}/>
                 </div>
             </>
