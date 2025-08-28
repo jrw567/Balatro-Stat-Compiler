@@ -21,9 +21,14 @@ function Career(props){
         list.push(newKey + ": " + props.list[0][key])
     })
     return list.map((e, index) => {
+        let name = e.substring(0, e.indexOf(":"))
+        let count = e.substring(e.indexOf(":") + 2, e.length)
         if(emptyList)
             return
-        return <p key={index} className="career">{e}</p>
+        return <div key={index} className="careerDisplay">
+                <p className={props.item}>{`${name}`}</p>
+                <p className={"count"}>{`${count}`}</p>
+            </div>
     })
 }
 export default Career
