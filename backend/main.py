@@ -480,6 +480,108 @@ def remove_file(file_number):
     db.session.commit()
     return jsonify({"message": "File removed successfully"}), 200
 
+@app.route("/toggle_file/<boolean:status>/<int:file_number>", methods=["PATCH"])
+
+def toggleFile(status, file_number):
+    TOTAL_FILE = 4
+    for x in db.session.query(Career).filter(Career.file_num == file_number):
+        q = db.session.query(Career).filter(Career.file_num == TOTAL_FILE)
+        if(db.session.query(q.exists()).scalar()):
+            for y in q:
+                if(status):
+                    y.cards_discarded += x.cards_discarded
+                    y.hands_played += x.hands_played
+                    y.dollars_earned += x.dollars_earned
+                    y.cards_played += x.cards_played
+                    y.planetarium_used += x.planetarium_used
+                    y.wins += x.wins
+                    y.shop_rerolls += x.shop_rerolls
+                    y.losses += x.losses
+                    y.tarots_bought += x.tarots_bought
+                    y.shop_dollars_spent += x.shop_dollars_spent
+                    y.planets_bought += x.planets_bought
+                    y.vouchers_bought += x.vouchers_bought
+                    y.tarot_reading_used += x.tarot_reading_used
+                    y.rounds += x.rounds
+                    y.jokers_sold += x.jokers_sold
+                    y.face_cards_played += x.face_cards_played
+                    y.playing_cards_bought += x.playing_cards_bought
+                else:
+                    y.cards_discarded -= x.cards_discarded
+                    y.hands_played -= x.hands_played
+                    y.dollars_earned -= x.dollars_earned
+                    y.cards_played -= x.cards_played
+                    y.planetarium_used -= x.planetarium_used
+                    y.wins -= x.wins
+                    y.shop_rerolls -= x.shop_rerolls
+                    y.losses -= x.losses
+                    y.tarots_bought -= x.tarots_bought
+                    y.shop_dollars_spent -= x.shop_dollars_spent
+                    y.planets_bought -= x.planets_bought
+                    y.vouchers_bought -= x.vouchers_bought
+                    y.tarot_reading_used -= x.tarot_reading_used
+                    y.rounds -= x.rounds
+                    y.jokers_sold -= x.jokers_sold
+                    y.face_cards_played -= x.face_cards_played
+                    y.playing_cards_bought -= x.playing_cards_bought
+    
+    for x in db.session.query(Joker).filter(Joker.file_num == file_number):
+        q = db.session.query(Joker).filter(Joker.file_num == TOTAL_FILE).filter(Joker.joker_name == x.joker_name)
+        if(db.session.query(q.exists()).scalar()):
+            for y in q:
+                if(status):
+                    y.joker_count += x.joker_count
+                    y.joker_wins +=  x.joker_wins
+                    y.joker_losses += x.joker_losses
+                else:
+                    y.joker_count -= x.joker_count
+                    y.joker_wins -=  x.joker_wins
+                    y.joker_losses -= x.joker_losses
+                
+        
+
+    for x in db.session.query(Consumable).filter(Consumable.file_num == file_number):
+        q = db.session.query(Consumable).filter(Consumable.file_num == TOTAL_FILE).filter(Consumable.consumable_name == x.consumable_name)
+        if(db.session.query(q.exists()).scalar()):
+            for y in q:
+                if(status):
+                    y.consumable_count += x.consumable_count
+                else:
+                    y.consumable_count -= x.consumable_count
+
+    for x in db.session.query(Voucher).filter(Voucher.file_num == file_number):
+        q = db.session.query(Voucher).filter(Voucher.file_num == TOTAL_FILE).filter(Voucher.voucher_name == x.voucher_name)
+        if(db.session.query(q.exists()).scalar()):
+            for y in q:
+                if(status):
+                    y.voucher_count += x.voucher_count
+                else:
+                    y.voucher_count -= x.voucher_count
+
+    for x in db.session.query(Hands).filter(Hands.file_num == file_number):
+        q = db.session.query(Hands).filter(Hands.file_num == TOTAL_FILE).filter(Hands.hand_name == x.hand_name)
+        if(db.session.query(q.exists()).scalar()):
+            for y in q:
+                if(status):
+                    y.hand_count += x.hand_count
+                else:
+                    y.hand_count -= x.hand_count
+
+    for x in db.session.query(Deck).filter(Deck.file_num == file_number):
+        q = db.session.query(Deck).filter(Deck.file_num == TOTAL_FILE).filter(Deck.deck_name == x.deck_name)
+        if(db.session.query(q.exists()).scalar()):
+            for y in q:
+                if(status):
+                    y.deck_wins += x.deck_wins
+                    y.deck_losses += x.deck_losses
+                else:
+                    y.deck_wins -= x.deck_wins
+                    y.deck_losses -= x.deck_losses
+    
+    db.session.commit()
+
+    return jsonify({"message": "File toggled successfully"}), 200
+
 if __name__ == "__main__":
     with app.app_context():
         db.create_all()

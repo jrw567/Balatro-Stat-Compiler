@@ -80,7 +80,7 @@ function App() {
         document.querySelector(".marker").style.left = `${(buttonRect.left - displayRect.left)}px`
         console.log(buttonRect.left - displayRect.left)
         console.log((buttonRect.right - buttonRect.left - 40)/2)
-        document.querySelector(".marker").style.marginLeft = `${(buttonRect.right - buttonRect.left - 40)/2}px`
+        document.querySelector(".marker").style.marginLeft = `${(buttonRect.right - buttonRect.left - 40)/2}px` //convert to %
         document.querySelector(".marker").style.marginRight = `${(buttonRect.right - buttonRect.left - 40)/2}px`
       }
       
