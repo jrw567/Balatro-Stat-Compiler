@@ -17,6 +17,11 @@ export const removeFile = async (file_number, item_type) => {
     return getList(4, item_type)//change this to 4
 }
 
+export const toggleFile = async (status, file_number, item_type) => {
+    await fetch(`http://127.0.0.1:5000/toggle_file/${status}/${file_number}`, {method: "PATCH"})
+    return getList(4, item_type)//change this to 4
+}
+
 export const getList = async (file_number, item_type) => {
     return await fetch(`http://127.0.0.1:5000/get_${item_type}/${file_number}`, {method: "GET"}).then((rsp) => rsp.json());
 }

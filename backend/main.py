@@ -480,7 +480,7 @@ def remove_file(file_number):
     db.session.commit()
     return jsonify({"message": "File removed successfully"}), 200
 
-@app.route("/toggle_file/<boolean:status>/<int:file_number>", methods=["PATCH"])
+@app.route("/toggle_file/<int:status>/<int:file_number>", methods=["PATCH"])
 
 def toggleFile(status, file_number):
     TOTAL_FILE = 4

@@ -1,6 +1,6 @@
 import { useEffect, useState, useActionState } from 'react'
 import './css/App.css'
-import { uploadFile, removeFile, getList } from './services/api'
+import { uploadFile, removeFile, toggleFile, getList } from './services/api'
 import DisplayList from './components/DisplayList';
 
 function App() {
@@ -9,6 +9,7 @@ function App() {
   const [displayList, setDisplayList] = useState({list:[], item:"career"});
   const [firstRender, setFirstRender] = useState(true);
   const [fileUploaded, setFileUploaded] = useState({bool:false, num:0});
+  const [filesToggled, setFilesToggled] = useState([]);
 
   const[returnState, formAction] = useActionState(uploadFile, undefined);
 
@@ -42,6 +43,21 @@ function App() {
       }
     }
   }, [fileUploaded])
+
+  useEffect (() => {
+    if(!firstRender){
+      for(let i = 1; i <= 3; i++){
+        console.log("hell")
+        if(filesToggled.includes(i)){
+          console.log("hell")
+          document.getElementById(`save${i}`).style.background = "grey"
+        }
+        else{
+          document.getElementById(`save${i}`).style.background = "rgb(255, 68, 59)"
+        }
+      }
+    }
+  }, [filesToggled])
 
   useEffect (() => {
     if(document.querySelector(".marker")){
@@ -93,7 +109,20 @@ function App() {
       <h1>Balatro Stat Compiler</h1>
       <div id='fileInput'>
         <div>
-          <button className="save">Save 1</button>
+          <button className="save" id="save1" onClick={() => {
+            if(filesToggled.includes(1)){
+              let newList = [...filesToggled]
+              newList.splice(newList.indexOf(1), 1)
+              setFilesToggled(newList)
+              toggleFile(1, 1, displayList.item).then((rsp) => setDisplayList({list: rsp, item: displayList.item}))
+            }
+            else{
+              let newList = [...filesToggled]
+              newList.push(1)
+              setFilesToggled(newList)
+              toggleFile(0, 1, displayList.item).then((rsp) => setDisplayList({list: rsp, item: displayList.item}))
+            }
+          }}>Save 1</button>
           <form action={(e) =>{
             e.append("fileNum", 1)
             e.append("itemType", displayList.item)
@@ -117,7 +146,20 @@ function App() {
       
 
         <div>
-          <button className="save">Save 2</button>
+          <button className="save" id="save2" onClick={() => {
+            if(filesToggled.includes(2)){
+              let newList = [...filesToggled]
+              newList.splice(newList.indexOf(2), 1)
+              setFilesToggled(newList)
+              toggleFile(1, 2, displayList.item).then((rsp) => setDisplayList({list: rsp, item: displayList.item}))
+            }
+            else{
+              let newList = [...filesToggled]
+              newList.push(2)
+              setFilesToggled(newList)
+              toggleFile(0, 2, displayList.item).then((rsp) => setDisplayList({list: rsp, item: displayList.item}))
+            }
+          }}>Save 2</button>
           <form action={(e) =>{
             e.append("fileNum", 2)
             e.append("itemType", displayList.item)
@@ -139,7 +181,20 @@ function App() {
       
       
         <div>
-          <button className="save">Save 3</button>
+          <button className="save" id="save3" onClick={() => {
+            if(filesToggled.includes(3)){
+              let newList = [...filesToggled]
+              newList.splice(newList.indexOf(3), 1)
+              setFilesToggled(newList)
+              toggleFile(1, 3, displayList.item).then((rsp) => setDisplayList({list: rsp, item: displayList.item}))
+            }
+            else{
+              let newList = [...filesToggled]
+              newList.push(3)
+              setFilesToggled(newList)
+              toggleFile(0, 3, displayList.item).then((rsp) => setDisplayList({list: rsp, item: displayList.item}))
+            }
+          }}>Save 3</button>
           <form action={(e) =>{
             e.append("fileNum", 3)
             e.append("itemType", displayList.item)
