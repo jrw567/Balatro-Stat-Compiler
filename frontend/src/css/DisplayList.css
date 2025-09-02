@@ -79,7 +79,12 @@ p {
     width: 9%;
     bottom: 15px;
 }
-
+#listBoundary{
+    margin: 0 auto;
+    width: 60%;
+    height: 100%;
+    place-content: center;
+}
 .handDisplay, .careerDisplay{
     position: relative;
     display: flex;
@@ -93,6 +98,10 @@ p {
     margin-top: 2px;
     margin-bottom: 2px;
 }
+.careerDisplay{
+    display: inline-flex;
+    width: 50%;
+}
 .handDisplay p, .careerDisplay p{
     position: absolute;
     left: 0px;
@@ -100,8 +109,9 @@ p {
     font-size: 32px;
     align-content: center;
     text-align: center;
+
 }
-.handDisplay span{
+.handDisplay span, .careerDisplay span{
     position: absolute;
     right: 26%;
     height: 100%;
@@ -110,8 +120,10 @@ p {
 .hands, .career{
     height: 100%;
     width: 75%;
+    text-wrap: nowrap;
 }
 .count{
+    position: relative;
     right: 0px;
     background: rgb(30, 43, 45);
     border-radius: 10px;
@@ -119,6 +131,7 @@ p {
     height: 95%;
     align-self: center;
     justify-self: end;
+    text-align: center;
     right: 1px;
     width: 25%;
 }

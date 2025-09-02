@@ -23,10 +23,14 @@ function Career(props){
     return list.map((e, index) => {
         let name = e.substring(0, e.indexOf(":"))
         let count = e.substring(e.indexOf(":") + 2, e.length)
+        let str = "#"
+        if(name.includes("Dollar"))
+            str = "$"
         if(emptyList)
             return
         return <div key={index} className="careerDisplay">
                 <p className={props.item}>{`${name}`}</p>
+                <span>{str}</span>
                 <p className={"count"}>{`${count}`}</p>
             </div>
     })
