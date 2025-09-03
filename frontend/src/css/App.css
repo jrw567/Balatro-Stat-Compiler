@@ -90,9 +90,14 @@ nav{
     border-radius: 10px;
     grid-area: display;
  }
-
- .marker{
+#markerContainer{
     position: absolute;
+    display: flex;
+    height: 32px;
+    width: 100%;
+}
+ .marker{
+    position: relative;
     filter: drop-shadow(3px 3px 1px rgba(0, 0, 0, 0.445));
     height: 32px;
     width: 32px;

@@ -91,9 +91,26 @@ function App() {
       if(!firstRender){
         let buttonRect = list[index].getBoundingClientRect()
         let displayRect = document.querySelector("#display").getBoundingClientRect()
-        document.querySelector(".marker").style.left = `${(buttonRect.left - displayRect.left)}px`
-        document.querySelector(".marker").style.marginLeft = `${(buttonRect.right - buttonRect.left - 40)/2}px` //convert to %
-        document.querySelector(".marker").style.marginRight = `${(buttonRect.right - buttonRect.left - 40)/2}px`
+        document.querySelector("#markerContainer").style.placeContent = "center"
+        document.querySelector(".marker").style.left = `0px`
+        // document.querySelector(".marker").style.left = `${(buttonRect.left - displayRect.left)}px`
+        // document.querySelector(".marker").style.marginLeft = `${(buttonRect.right - buttonRect.left - 40)/2}px` //convert to %
+        // document.querySelector(".marker").style.marginRight = `${(buttonRect.right - buttonRect.left - 40)/2}px`
+
+        // document.querySelector(".marker").style.left = `${(buttonRect.left - displayRect.left)}px`
+        
+        let sum = (buttonRect.right - buttonRect.left - 40)/2 + (buttonRect.left - displayRect.left)
+        document.querySelector(".marker").style.marginLeft = `${sum}px` //convert to %
+        document.querySelector(".marker").style.marginRight = `${displayRect.right - displayRect.left - sum - 40}px`
+
+        // console.log((buttonRect.left - displayRect.left))
+        // console.log((buttonRect.right - buttonRect.left - 40)/2)
+        // let sum = (buttonRect.left - displayRect.left) + ((buttonRect.right - buttonRect.left - 40)/2)
+        // document.querySelector(".marker").style.left = `0px`
+        // document.querySelector(".marker").style.marginLeft = `${sum}px`
+        // document.querySelector(".marker").style.marginRight = `${displayRect.right - sum - displayRect.left - ((buttonRect.right - buttonRect.left - 40)/2)}px`
+        // console.log(displayRect.right - sum)
+        // console.log(((buttonRect.left - displayRect.left) + ((buttonRect.right - buttonRect.left - 40)/2)))
       }
       
     }
@@ -211,7 +228,9 @@ function App() {
       </div>
       
       <div id='display'>
-        <img src="/images/arrow.svg" alt="" className="marker"/>
+        <div id="markerContainer">
+          <img src="/images/arrow.svg" alt="" className="marker"/>
+        </div>
         <nav>
           <button onClick={() => { getList(total, "career").then((rsp) => setDisplayList({list: rsp, item:"career"}))}}>Career Stats</button>
           <button onClick={() => { getList(total, "hands").then((rsp) => setDisplayList({list: rsp, item:"hands"}))}}>Hand Stats</button>
