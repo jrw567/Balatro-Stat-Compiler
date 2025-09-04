@@ -24,26 +24,6 @@ function Deck(props){
         return 0
     })
 
-    // sortedList.forEach((e) =>{
-    //     let deck = e.name
-    //     let wins = e.wins
-    //     let losses = e.losses
-    //     deck = deck.replace(deck.charAt(0), deck.charAt(0).toUpperCase())
-    //     list.push(deck + ` Deck: Wins: ${wins} Losses: ${losses}`)
-    // })
-    // return list.map((e, index) => {
-    //     let name = e.substring(0, e.indexOf(":"))
-    //     return <>
-    //         <p key={index} className="decks">{e}</p>
-    //         <img src={`../images/decks/${name}.webp`} alt={`Image of ${name}`} />
-    //     </>
-    // })
-
-
-
-
-
-
     sortedList.forEach((e) =>{
         let deck = e.name
         e.name = deck.replace(deck.charAt(0), deck.charAt(0).toUpperCase())
@@ -85,7 +65,6 @@ function Deck(props){
             return
         return <div key={index} className="singleDisplay">
             <img src={`../images/decks/${name}.webp`} alt={`Image of ${name}`}/>
-            {/* <p className="decks">{`${name}: Wins: ${pageList[index].wins} Losses: ${pageList[index].losses}`}</p> */}
             <p className="decks">{displayValue}</p>
             <div className="bar" style={{height: barHeight + '%', background: "rgb(95, 126, 133)"}}></div>
         </div>

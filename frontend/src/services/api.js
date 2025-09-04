@@ -5,7 +5,7 @@ export const uploadFile = async (previous, data) => {
         let item_type = entries[2][1]
         let response = await fetch(`http://127.0.0.1:5000/upload_file/${file_number}`, {method: "POST", body: data}).then((rsp) => rsp.json());
         document.getElementById(`file${file_number}`).innerHTML = response.message;
-        return getList(4, item_type) //will want to change this to file_number 4
+        return getList(4, item_type)
     } else {
         document.getElementById(`file1`).innerHTML = "Please upload a Balatro save file";
         return true;
@@ -14,12 +14,12 @@ export const uploadFile = async (previous, data) => {
 
 export const removeFile = async (file_number, item_type) => {
     await fetch(`http://127.0.0.1:5000/remove_file/${file_number}`, {method: "DELETE"})
-    return getList(4, item_type)//change this to 4
+    return getList(4, item_type)
 }
 
 export const toggleFile = async (status, file_number, item_type) => {
     await fetch(`http://127.0.0.1:5000/toggle_file/${status}/${file_number}`, {method: "PATCH"})
-    return getList(4, item_type)//change this to 4
+    return getList(4, item_type)
 }
 
 export const getList = async (file_number, item_type) => {

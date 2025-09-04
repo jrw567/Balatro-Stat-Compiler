@@ -88,7 +88,6 @@ p {
 .handDisplay, .careerDisplay{
     position: relative;
     display: flex;
-    /* place-content: center; */
     text-shadow: 3px 3px 1px rgba(0, 0, 0, 0.445);
     background: rgb(163, 172, 185);
     border-radius: 10px;

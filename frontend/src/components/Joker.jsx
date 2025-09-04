@@ -29,31 +29,6 @@ function Joker(props){
             return 1
         return 0
     })
-    
-    // sortedList.forEach((e) =>{
-    //     let joker = e.name
-    //     let count = e.count
-    //     let wins = e.wins
-    //     let losses = e.losses
-    //     joker = joker.replace(under_regex, " ")
-    //     while(joker.search(name_regex) >= 0){
-    //         joker = joker.replace(name_regex, char => char.toUpperCase())
-    //     }
-    //     joker = joker.replace(" The ", " the ")
-    //     joker = joker.replace(" In", "-In")
-    //     list.push(joker + `: Rounds: ${count} Wins: ${wins} Losses: ${losses}`)
-    // })
-    // return list.map((e, index) => {
-    //     if(index>=10) //remove and replace with proper page logic
-    //         return
-    //     let name = e.substring(0, e.indexOf(":"))
-    //     return <div className="joker">
-    //         <img src={`../images/jokers/${name}.webp`} alt={`Image of ${name}`} />
-    //         <p key={index} className="jokers">{e}</p>
-    //         <div ></div>
-    //     </div>
-    // })
-
 
     sortedList.forEach((e) =>{
         let joker = e.name
@@ -101,11 +76,10 @@ function Joker(props){
         if(max == 0)
             return
         
-        if(index>=10) //remove and replace with proper page logic
+        if(index>=10)
             return
         return <div key={index} className="singleDisplay">
             <img src={`../images/jokers/${name}.webp`} alt={`Image of ${name}`}/>
-            {/* <p className="jokers">{`${name}: Rounds: ${pageList[index].count} Wins: ${pageList[index].wins} Losses: ${pageList[index].losses}`}</p> */}
             <p className="jokers">{displayValue}</p>
             <div className="bar" style={{height: barHeight + '%', background: "rgb(95, 126, 133)"}}></div>
         </div>

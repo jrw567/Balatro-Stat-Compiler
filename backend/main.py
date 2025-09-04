@@ -481,7 +481,7 @@ def remove_file(file_number):
     return jsonify({"message": "File removed successfully"}), 200
 
 @app.route("/toggle_file/<int:status>/<int:file_number>", methods=["PATCH"])
-
+#adds or removes indicated save file from total to "toggle" its visibility
 def toggleFile(status, file_number):
     TOTAL_FILE = 4
     for x in db.session.query(Career).filter(Career.file_num == file_number):

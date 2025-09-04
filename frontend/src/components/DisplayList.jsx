@@ -7,7 +7,7 @@ import { useState, useEffect } from "react"
 
 function DisplayList(props){
     const [page, setPage] = useState(1)
-    const [filter, setFilter] = useState("") //need to have key updated and also need to properly update filter
+    const [filter, setFilter] = useState("") 
 
     let pageLimit = 0
 
@@ -41,7 +41,7 @@ function DisplayList(props){
     }
 
     function incrementPage(){
-        if(page < pageLimit) //change to variable dependant on props.item****************
+        if(page < pageLimit)
             setPage(page + 1)
     }
 
