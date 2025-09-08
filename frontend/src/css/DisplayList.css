@@ -15,6 +15,7 @@
     height: 75%;
     width: 80%;
     margin: 0 auto;
+    min-width: 1280px;
 }
 .key{
     position: absolute;

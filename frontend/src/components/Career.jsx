@@ -7,6 +7,9 @@ function Career(props){
 
     let emptyList = 0
     Object.keys(props.list[0]).forEach((key) =>{
+        if(key == "file_name"){
+            return
+        }
         let newKey = key.replace(under_regex, " ")
         while(newKey.search(name_regex) >= 0){
             newKey = newKey.replace(name_regex, char => char.toUpperCase())

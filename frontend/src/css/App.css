@@ -71,6 +71,7 @@ nav{
     background: rgb(255, 68, 59);
     color: white;
     text-shadow: 3px 3px 1px rgba(0, 0, 0, 0.445);
+    text-wrap: nowrap;
     font-family: 'm6x11';
     font-size: 32px;
     border: none;
