@@ -41,13 +41,74 @@ body{
         grid-template-columns: auto repeat(4, 325px) auto;
     }
 }
+
 @media screen and (max-Width: 1310px){
     #root{
         grid-template-columns: auto repeat(4, 1fr) auto;
         width: 100vw;
     }
-    body nav{
-        flex-wrap: wrap;
-    }
     
+    body nav, body #fileInput div{
+        transform: scale(85%);
+    }
+
+    body #displayBox{
+        min-width: 1090px;
+        gap: 0;
+    }
+    body #displayBox .singleDisplay{
+        transform-origin: bottom;
+        place-self: end;
+        min-width: 120px;
+        margin-left: -6px;
+        margin-right: -6px;
+    }
+
+    body #displayBox > *{
+        transform: scale(85%);
+    }
+}
+
+@media screen and (max-Width: 1105px){
+    body nav, body #fileInput div{
+        text-wrap: nowrap;
+        transform: scale(70%);
+    }
+
+    body #displayBox{
+        min-width: 900px;
+    }
+
+    body #displayBox .singleDisplay{
+        margin-left: -16px;
+        margin-right: -16px;
+    }
+
+    body #displayBox > *{
+        transform: scale(70%);
+    }
+}
+
+@media screen and (max-Width: 915px){
+    body nav, body #fileInput div{
+        transform: scale(55%);
+    }
+
+    body #displayBox{
+        min-width: 100%;
+        flex-direction: column;
+        place-content: start;
+    }
+
+    body #displayBox .singleDisplay{
+        margin-bottom: -16px;
+        margin-top: -16px;
+        flex-direction: row;
+        transform-origin: left;
+        place-self: start;
+    }
+
+    body #displayBox > *{
+        transform: scale(55%);
+    }
 }
