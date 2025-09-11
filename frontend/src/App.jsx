@@ -57,65 +57,52 @@ function App() {
     }
   }, [filesToggled])
 
-  useEffect (() => {
-    if(document.querySelector(".marker")){
-      let list = document.querySelectorAll("nav button")
-      let index = ""
-      if(displayList.item == "career"){
-        index = 0
-      }
-      else if(displayList.item == "hands"){
-        index = 1
-      }
-      else if(displayList.item == "decks"){
-        index = 2
-      }
-      else if(displayList.item == "jokers"){
-        index = 3
-      }
-      else if(displayList.item == "consumables"){
-        index = 4
-      }
-      else if(displayList.item == "tarots"){
-        index = 5
-      }
-      else if(displayList.item == "planets"){
-        index = 6
-      }
-      else if(displayList.item == "spectrals"){
-        index = 7
-      }
-      else if(displayList.item == "vouchers"){
-        index = 8
-      }
-      if(!firstRender){
-        let buttonRect = list[index].getBoundingClientRect()
-        let displayRect = document.querySelector("#display").getBoundingClientRect()
-        document.querySelector("#markerContainer").style.placeContent = "center"
-        document.querySelector(".marker").style.left = `0px`
-        // document.querySelector(".marker").style.left = `${(buttonRect.left - displayRect.left)}px`
-        // document.querySelector(".marker").style.marginLeft = `${(buttonRect.right - buttonRect.left - 40)/2}px` //convert to %
-        // document.querySelector(".marker").style.marginRight = `${(buttonRect.right - buttonRect.left - 40)/2}px`
-
-        // document.querySelector(".marker").style.left = `${(buttonRect.left - displayRect.left)}px`
+  // useEffect (() => {
+  //   if(document.querySelector(".marker")){
+  //     let list = document.querySelectorAll("nav button")
+  //     let index = ""
+  //     if(displayList.item == "career"){
+  //       index = 0
+  //     }
+  //     else if(displayList.item == "hands"){
+  //       index = 1
+  //     }
+  //     else if(displayList.item == "decks"){
+  //       index = 2
+  //     }
+  //     else if(displayList.item == "jokers"){
+  //       index = 3
+  //     }
+  //     else if(displayList.item == "consumables"){
+  //       index = 4
+  //     }
+  //     else if(displayList.item == "tarots"){
+  //       index = 5
+  //     }
+  //     else if(displayList.item == "planets"){
+  //       index = 6
+  //     }
+  //     else if(displayList.item == "spectrals"){
+  //       index = 7
+  //     }
+  //     else if(displayList.item == "vouchers"){
+  //       index = 8
+  //     }
+  //     if(!firstRender){
+  //       let buttonRect = list[index].getBoundingClientRect()
+  //       let displayRect = document.querySelector("#display").getBoundingClientRect()
+  //       document.querySelector("#markerContainer").style.placeContent = "center"
+  //       document.querySelector(".marker").style.left = `0px`
         
-        let sum = (buttonRect.right - buttonRect.left - 40)/2 + (buttonRect.left - displayRect.left)
-        document.querySelector(".marker").style.marginLeft = `${sum}px` //convert to %
-        document.querySelector(".marker").style.marginRight = `${displayRect.right - displayRect.left - sum - 40}px`
-
-        // console.log((buttonRect.left - displayRect.left))
-        // console.log((buttonRect.right - buttonRect.left - 40)/2)
-        // let sum = (buttonRect.left - displayRect.left) + ((buttonRect.right - buttonRect.left - 40)/2)
-        // document.querySelector(".marker").style.left = `0px`
-        // document.querySelector(".marker").style.marginLeft = `${sum}px`
-        // document.querySelector(".marker").style.marginRight = `${displayRect.right - sum - displayRect.left - ((buttonRect.right - buttonRect.left - 40)/2)}px`
-        // console.log(displayRect.right - sum)
-        // console.log(((buttonRect.left - displayRect.left) + ((buttonRect.right - buttonRect.left - 40)/2)))
-      }
+        
+  //       let sum = (buttonRect.right - buttonRect.left - 40)/2 + (buttonRect.left - displayRect.left)
+  //       document.querySelector(".marker").style.marginLeft = `${sum}px` //convert to %
+  //       document.querySelector(".marker").style.marginRight = `${displayRect.right - displayRect.left - sum - 40}px`
+  //     }
       
-    }
+  //   }
     
-  }, [displayList.item])
+  // }, [displayList.item])
   
   return (
     <>
@@ -228,9 +215,9 @@ function App() {
       </div>
       
       <div id='display'>
-        <div id="markerContainer">
+        {/* <div id="markerContainer">
           <img src="/images/arrow.svg" alt="" className="marker"/>
-        </div>
+        </div> */}
         <nav>
           <button onClick={() => { getList(total, "career").then((rsp) => setDisplayList({list: rsp, item:"career"}))}}>Career Stats</button>
           <button onClick={() => { getList(total, "hands").then((rsp) => setDisplayList({list: rsp, item:"hands"}))}}>Hand Stats</button>
@@ -242,6 +229,7 @@ function App() {
           <button onClick={() => { getList(total, "spectrals").then((rsp) => setDisplayList({list: rsp, item:"spectrals"}))}}>Spectrals</button>
           <button onClick={() => { getList(total, "vouchers").then((rsp) => setDisplayList({list: rsp, item:"vouchers"}))}}>Vouchers</button>
         </nav>
+        <p id="warning">Balatro Stat Compiler is designed specifically for the PC version of Balatro. As such, the site does not function on a mobile device. Consider loading the site on a computer or watching this demo: link</p>
         <DisplayList list={displayList.list} item={displayList.item} bool={fileUploaded.bool}/>
       </div>
       

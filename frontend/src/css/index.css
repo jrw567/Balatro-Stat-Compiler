@@ -75,6 +75,12 @@ body{
         transform: scale(70%);
     }
 
+    body #fileInput div{
+        margin-left: -25px;
+         margin-right: -25px;
+        
+    }
+
     body #displayBox{
         min-width: 900px;
     }
@@ -93,22 +99,52 @@ body{
     body nav, body #fileInput div{
         transform: scale(55%);
     }
+    body #fileInput div{
+        margin-left: -55px;
+         margin-right: -55px;
+        
+    }
 
     body #displayBox{
-        min-width: 100%;
-        flex-direction: column;
-        place-content: start;
+        min-width: 725px;
     }
 
     body #displayBox .singleDisplay{
-        margin-bottom: -16px;
-        margin-top: -16px;
-        flex-direction: row;
-        transform-origin: left;
-        place-self: start;
+        min-width: 120px;
+        margin-left: -24px;
+        margin-right: -24px;
     }
 
     body #displayBox > *{
         transform: scale(55%);
+    }
+}
+
+@media screen and (max-Width: 740px){
+    body * {
+        display: none;
+    }
+    body #fileInput{
+        display: none;
+    }
+    body h1{
+        display: block;
+        text-wrap: nowrap;
+        width: 100vw;
+    }
+    body #displayBox {
+        min-width: 100%;
+    }
+    body #warning{
+        position: absolute;
+        z-index: 1;
+        display: inline;
+        place-content: center;
+        align-self: center;
+        text-align: center;
+        height: 75%;
+        padding: 0;
+        margin: 0;
+        font-size: 32px;
     }
 }
