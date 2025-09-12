@@ -47,7 +47,28 @@ function DisplayList(props){
 
     if(props.list == null || props.item == null || props.list.length == 0)
         return <div id="displayBox">
-            <p>Insert description of how the application works</p>
+            <p className="usage">
+
+                To use Balatro Stat Compiler, simply upload your Balatro save file(s)
+                <br />
+
+                Your game save file will be profile.jkr
+                <br />
+
+                To find your Balatro save file(s) on Windows:
+                <br />
+
+                    Hit Windows Key + R
+                    <br />
+                    Type %AppData%/Balatro
+                    <br />
+                    Click OK
+                    <br />
+                    Select and open folders 1, 2, or 3
+                    <br />
+                    Upload profile.jkr to Balatro Stat Compiler
+
+            </p>
         </div>
     if(props.item == "career")
         return <div id="displayBox"  style={{display: "block"}}><div id ="listBoundary"><Career list={props.list} item={props.item}/></div></div>
@@ -62,17 +83,18 @@ function DisplayList(props){
                     <div></div>
                     <span>{keyString}</span>
                 </div>
-                <div className="filter">
-                        <span>Sort by: </span>
-                        <button onClick={() => {setFilter("wins")}}>Wins</button>
-                        <button onClick={() => {setFilter("losses")}}>Losses</button>
-                </div>
+                
                 <Deck list={props.list} page={page}  filter={filter}/>
             </div>
             <div id='page'>
                     <button onClick={() => {decrementPage()}}>&lt;</button>
                     <span>{`Page ${page}/${pageLimit}`}</span>
                     <button onClick={() => {incrementPage()}}>&gt;</button>
+            </div>
+            <div className="filter">
+                        <span className="sort">Sort by: </span>
+                        <button onClick={() => {setFilter("wins")}}>Wins</button>
+                        <button onClick={() => {setFilter("losses")}}>Losses</button>
             </div>
         </> 
     } else if(props.item == "jokers"){
@@ -88,12 +110,7 @@ function DisplayList(props){
                         <div></div>
                         <span>{keyString}</span>
                     </div>
-                    <div className="filter">
-                        <span>Sort by: </span>
-                        <button onClick={() => {setFilter("count")}}>Rounds</button>
-                        <button onClick={() => {setFilter("wins")}}>Wins</button>
-                        <button onClick={() => {setFilter("losses")}}>Losses</button>
-                    </div>
+                    
                     <Joker list={props.list} page={page} filter={filter}/>
                     </div>
                 <div id='page'>
@@ -101,6 +118,12 @@ function DisplayList(props){
                     <span>{`Page ${page}/${pageLimit}`}</span>
                     <button onClick={() => {incrementPage()}}>&gt;</button>
                 </div>
+                <div className="filter">
+                        <span className="sort">Sort by: </span>
+                        <button onClick={() => {setFilter("count")}}>Rounds</button>
+                        <button onClick={() => {setFilter("wins")}}>Wins</button>
+                        <button onClick={() => {setFilter("losses")}}>Losses</button>
+                    </div>
         </>
     } else if(props.item == "hands" || props.item == "consumables" || props.item == "tarots" || props.item == "planets" || props.item == "spectrals" || props.item == "vouchers"){
         let keyMessage = "Number of times this card has been used"

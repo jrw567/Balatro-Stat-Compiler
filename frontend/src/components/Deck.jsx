@@ -59,9 +59,9 @@ function Deck(props){
             return
 
         if(max == 0)
-            return
+            return 
         
-        if(index>=10) //remove and replace with proper page logic
+        if(index>=10)
             return
         return <div key={index} className="singleDisplay">
             <img src={`../images/decks/${name}.webp`} alt={`Image of ${name}`}/>

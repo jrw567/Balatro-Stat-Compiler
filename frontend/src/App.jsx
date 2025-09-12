@@ -57,52 +57,49 @@ function App() {
     }
   }, [filesToggled])
 
-  // useEffect (() => {
-  //   if(document.querySelector(".marker")){
-  //     let list = document.querySelectorAll("nav button")
-  //     let index = ""
-  //     if(displayList.item == "career"){
-  //       index = 0
-  //     }
-  //     else if(displayList.item == "hands"){
-  //       index = 1
-  //     }
-  //     else if(displayList.item == "decks"){
-  //       index = 2
-  //     }
-  //     else if(displayList.item == "jokers"){
-  //       index = 3
-  //     }
-  //     else if(displayList.item == "consumables"){
-  //       index = 4
-  //     }
-  //     else if(displayList.item == "tarots"){
-  //       index = 5
-  //     }
-  //     else if(displayList.item == "planets"){
-  //       index = 6
-  //     }
-  //     else if(displayList.item == "spectrals"){
-  //       index = 7
-  //     }
-  //     else if(displayList.item == "vouchers"){
-  //       index = 8
-  //     }
-  //     if(!firstRender){
-  //       let buttonRect = list[index].getBoundingClientRect()
-  //       let displayRect = document.querySelector("#display").getBoundingClientRect()
-  //       document.querySelector("#markerContainer").style.placeContent = "center"
-  //       document.querySelector(".marker").style.left = `0px`
-        
-        
-  //       let sum = (buttonRect.right - buttonRect.left - 40)/2 + (buttonRect.left - displayRect.left)
-  //       document.querySelector(".marker").style.marginLeft = `${sum}px` //convert to %
-  //       document.querySelector(".marker").style.marginRight = `${displayRect.right - displayRect.left - sum - 40}px`
-  //     }
+  useEffect (() => {
+    if(document.querySelector("nav button")){
+      let list = document.querySelectorAll("nav button")
+      list[0].style.border = "2px solid white";
+      let index = ""
+      if(displayList.item == "career"){
+        index = 0
+      }
+      else if(displayList.item == "hands"){
+        index = 1
+      }
+      else if(displayList.item == "decks"){
+        index = 2
+      }
+      else if(displayList.item == "jokers"){
+        index = 3
+      }
+      else if(displayList.item == "consumables"){
+        index = 4
+      }
+      else if(displayList.item == "tarots"){
+        index = 5
+      }
+      else if(displayList.item == "planets"){
+        index = 6
+      }
+      else if(displayList.item == "spectrals"){
+        index = 7
+      }
+      else if(displayList.item == "vouchers"){
+        index = 8
+      }
+      if(!firstRender){
+        for(let i = 0; i < list.length; i++){
+          list[i].style.border = "none";
+          if(i == index){
+            list[i].style.border = "2px solid white";
+          }
+        }
+      }
       
-  //   }
-    
-  // }, [displayList.item])
+    }
+  }, [displayList.item])
   
   return (
     <>

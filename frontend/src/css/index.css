@@ -67,6 +67,10 @@ body{
     body #displayBox > *{
         transform: scale(85%);
     }
+
+    body #page, body .filter{
+        transform: scale(85%);
+    }
 }
 
 @media screen and (max-Width: 1105px){
@@ -93,6 +97,14 @@ body{
     body #displayBox > *{
         transform: scale(70%);
     }
+
+    body #page, body .filter{
+        transform: scale(70%);
+    }
+
+    body .filter{
+        left: 20px;
+    }
 }
 
 @media screen and (max-Width: 915px){
@@ -118,10 +130,19 @@ body{
     body #displayBox > *{
         transform: scale(55%);
     }
+    body #page, body .filter{
+        transform: scale(55%);
+    }
+    body .filter{
+        left: 25px;
+    }
 }
 
 @media screen and (max-Width: 740px){
     body * {
+        display: none;
+    }
+    body #displayBox > * {
         display: none;
     }
     body #fileInput{
@@ -146,5 +167,43 @@ body{
         padding: 0;
         margin: 0;
         font-size: 32px;
+    }
+}
+
+@media screen and (max-height: 1070px){
+    body #display{
+        min-height: 765px;
+    }
+    body #footer{
+        display: none;
+        height: 0px;
+    }
+    body #fileInput{
+        min-height: 97px;
+    }
+}
+@media screen and (max-height: 980px){
+    #root{
+        grid-template-areas:
+            ". file file file file ."
+            ". display display display display ."
+            ". display display display display ."
+            ". display display display display ."
+            ". display display display display ."
+            ". display display display display ."
+            ". display display display display ."
+            ". display display display display .";
+         grid-auto-rows: 105px;
+    }
+    body h1{
+        display: none;
+        height: 0px;
+    }
+    body #footer{
+        display: none;
+        height: 0px;
+    }
+    body #fileInput{
+        min-height: 97px;
     }
 }

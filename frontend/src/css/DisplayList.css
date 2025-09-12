@@ -2,7 +2,13 @@
     font-family: 'm6x11';
     src: url(../fonts/m6x11.ttf);
 }
-
+.usage{
+    text-align: center;
+    font-size: 32px;
+    place-self: center;
+    padding: 0;
+    margin: 0;
+}
 #displayBox{
     position: relative;
     display: flex;
@@ -36,9 +42,11 @@
 .filter{
     position: absolute;
     display: flex;
-    right: 3%;
-    bottom: -8%;
     z-index: 1;
+    place-content: end;
+    align-items: center;
+    width: 100%;
+    bottom: 20px;
 }
 
 .decks, .jokers, .consumables, .tarots, .planets, .spectrals, .vouchers {
@@ -82,7 +90,7 @@ p {
 }
 #listBoundary{
     margin: 0 auto;
-    width: 60%;
+    min-width: 80%;
     height: 100%;
     place-content: center;
 }
@@ -97,10 +105,12 @@ p {
     margin: 0 auto;
     margin-top: 2px;
     margin-bottom: 2px;
+    min-width: 380px;
 }
 .careerDisplay{
     display: inline-flex;
     width: 50%;
+    min-width: 400px;
 }
 .handDisplay p, .careerDisplay p{
     position: absolute;
@@ -164,6 +174,13 @@ p {
     text-align: center;
     border-radius: 10px;
     min-width: 144px;
+}
+.sort{
+    box-shadow: none;
+    background-color: transparent;
+    color: white;
+    font-size: 32px;
+    text-shadow: 3px 3px 1px rgba(0, 0, 0, 0.445);
 }
 #page button{
     background: rgb(255, 68, 59);
