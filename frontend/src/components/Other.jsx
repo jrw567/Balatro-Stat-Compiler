@@ -17,7 +17,6 @@ function Other(props){
 
     sortedList.forEach((e) =>{
         let other = e.name
-        let count = e.count
         other = other.replace(under_regex, " ")
         if(props.item == "hands"){
             let index = other.search(hand_regex)
@@ -53,7 +52,7 @@ function Other(props){
             return <div key={index} className="handDisplay">
                 <p className={props.item}>{`${name}`}</p>
                 <span>#</span>
-                <p className={"count"}>{`${sortedList[index].count}`}</p>
+                <p className={"count"}>{`${sortedList[index].count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`}</p>
             </div>
             
         })
@@ -69,7 +68,7 @@ function Other(props){
                 return
             return <div key={index} className="singleDisplay">
                 <img src={`../images/vouchers/${name}.webp`} alt={`Image of ${name}`} />
-                <p className={props.item}>{pageList[index].count}</p>
+                <p className={props.item}>{pageList[index].count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>
                 <div className="bar" style={{height: barHeight + '%', background: "rgb(255, 86, 17)"}}></div>
             </div>
         })
@@ -92,7 +91,7 @@ function Other(props){
             }
             return <div key={index} className="singleDisplay">
                 <img src={`../images/consumables/${name}.webp`} alt={`Image of ${name}`}/>
-                <p className={props.item}>{pageList[index].count}</p>
+                <p className={props.item}>{pageList[index].count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>
                 <div className="bar" style={{height: barHeight + '%', background: color}}></div>
             </div>
         })

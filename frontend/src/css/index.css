@@ -71,6 +71,10 @@ body{
     body #page, body .filter{
         transform: scale(85%);
     }
+    body .handDisplay{
+        margin-top: -3px;
+        margin-bottom: -3px;
+    }
 }
 
 @media screen and (max-Width: 1105px){
@@ -83,6 +87,10 @@ body{
         margin-left: -25px;
          margin-right: -25px;
         
+    }
+
+    body #listBoundary{
+        width: 100%;
     }
 
     body #displayBox{
@@ -104,6 +112,11 @@ body{
 
     body .filter{
         left: 20px;
+    }
+
+    body .handDisplay{
+        margin-top: -8px;
+        margin-bottom: -8px;
     }
 }
 
@@ -130,11 +143,23 @@ body{
     body #displayBox > *{
         transform: scale(55%);
     }
+
+    body #listBoundary{
+        position: relative;
+        width: 120%;
+        right: 10%;
+    }
+
     body #page, body .filter{
         transform: scale(55%);
     }
     body .filter{
         left: 25px;
+    }
+
+    body .handDisplay{
+        margin-top: -14px;
+        margin-bottom: -14px;
     }
 }
 

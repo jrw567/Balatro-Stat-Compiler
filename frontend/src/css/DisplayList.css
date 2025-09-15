@@ -90,7 +90,7 @@ p {
 }
 #listBoundary{
     margin: 0 auto;
-    min-width: 80%;
+    width: 80%;
     height: 100%;
     place-content: center;
 }
@@ -111,6 +111,7 @@ p {
     display: inline-flex;
     width: 50%;
     min-width: 400px;
+    margin-top: -5px;
 }
 .handDisplay p, .careerDisplay p{
     position: absolute;

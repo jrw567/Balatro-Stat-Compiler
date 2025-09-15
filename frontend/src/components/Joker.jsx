@@ -80,7 +80,7 @@ function Joker(props){
             return
         return <div key={index} className="singleDisplay">
             <img src={`../images/jokers/${name}.webp`} alt={`Image of ${name}`}/>
-            <p className="jokers">{displayValue}</p>
+            <p className="jokers">{displayValue.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>
             <div className="bar" style={{height: barHeight + '%', background: "rgb(95, 126, 133)"}}></div>
         </div>
     })
