@@ -3,5 +3,5 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   plugins: [react()],
-  base: "/Balatro-Stat-Compiler/frontend"
+  base: "/Balatro-Stat-Compiler",
 })
