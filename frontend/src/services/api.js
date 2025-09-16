@@ -3,7 +3,7 @@ export const uploadFile = async (previous, data) => {
         let entries = [...data.entries()]
         let file_number = entries[1][1]
         let item_type = entries[2][1]
-        let response = await fetch(`http://127.0.0.1:5000/upload_file/${file_number}`, {method: "POST", body: data}).then((rsp) => rsp.json());
+        let response = await fetch(`https://jrw567.github.io/Balatro-Stat-Compiler/${file_number}`, {method: "POST", body: data}).then((rsp) => rsp.json());
         document.getElementById(`file${file_number}`).innerHTML = response.message;
         return getList(4, item_type)
     } else {
@@ -13,15 +13,15 @@ export const uploadFile = async (previous, data) => {
 }
 
 export const removeFile = async (file_number, item_type) => {
-    await fetch(`http://127.0.0.1:5000/remove_file/${file_number}`, {method: "DELETE"})
+    await fetch(`https://jrw567.github.io/Balatro-Stat-Compiler/${file_number}`, {method: "DELETE"})
     return getList(4, item_type)
 }
 
 export const toggleFile = async (status, file_number, item_type) => {
-    await fetch(`http://127.0.0.1:5000/toggle_file/${status}/${file_number}`, {method: "PATCH"})
+    await fetch(`https://jrw567.github.io/Balatro-Stat-Compiler/${status}/${file_number}`, {method: "PATCH"})
     return getList(4, item_type)
 }
 
 export const getList = async (file_number, item_type) => {
-    return await fetch(`http://127.0.0.1:5000/get_${item_type}/${file_number}`, {method: "GET"}).then((rsp) => rsp.json());
+    return await fetch(`https://jrw567.github.io/Balatro-Stat-Compiler/get_${item_type}/${file_number}`, {method: "GET"}).then((rsp) => rsp.json());
 }
