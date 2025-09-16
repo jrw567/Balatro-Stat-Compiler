@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'm6x11';
-    src: url(frontend/fonts/m6x11.ttf);
+    src: url(/frontend/fonts/m6x11.ttf);
 }
 .usage{
     text-align: center;
