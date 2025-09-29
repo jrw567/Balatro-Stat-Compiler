@@ -1,12 +1,13 @@
 @font-face {
     font-family: 'm6x11';
-    src: url(./frontend/fonts/m6x11.ttf);
+    src: url(./fonts/m6x11.ttf);
 }
 html, body{
     min-height: 100%;
     min-width: 100%;
     margin: 0px;
     overflow: hidden;
+    user-select: none;
 }
 #root{
     display: grid;
