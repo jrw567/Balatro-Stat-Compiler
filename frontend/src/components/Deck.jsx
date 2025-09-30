@@ -30,7 +30,7 @@ function Deck(props){
         if(!e.name.includes("Deck"))
             e.name = e.name + " " + "Deck"
         let img = new Image()
-        img.src = `../images/decks/${e.name}.webp`
+        img.src = `/images/decks/${e.name}.webp`
     })
     let pageList = []
     let minPage = 10 * (props.page - 1)
@@ -64,7 +64,7 @@ function Deck(props){
         if(index>=10)
             return
         return <div key={index} className="singleDisplay">
-            <img src={`images/decks/${name}.webp`} alt={`Image of ${name}`}/>
+            <img src={`/images/decks/${name}.webp`} alt={`Image of ${name}`}/>
             <p className="decks">{displayValue.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>
             <div className="bar" style={{height: barHeight + '%', background: "rgb(95, 126, 133)"}}></div>
         </div>

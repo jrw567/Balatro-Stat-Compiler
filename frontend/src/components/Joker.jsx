@@ -40,7 +40,7 @@ function Joker(props){
         joker = joker.replace(" In", "-In")
         e.name = joker
         let img = new Image()
-        img.src = `../images/jokers/${e.name}.webp`
+        img.src = `/images/jokers/${e.name}.webp`
     })
     let pageList = []
     let minPage = 10 * (props.page - 1)
@@ -79,7 +79,7 @@ function Joker(props){
         if(index>=10)
             return
         return <div key={index} className="singleDisplay">
-            <img src={`images/jokers/${name}.webp`} alt={`Image of ${name}`}/>
+            <img src={`/images/jokers/${name}.webp`} alt={`Image of ${name}`}/>
             <p className="jokers">{displayValue.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>
             <div className="bar" style={{height: barHeight + '%', background: "rgb(95, 126, 133)"}}></div>
         </div>
