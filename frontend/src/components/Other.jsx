@@ -30,7 +30,7 @@ function Other(props){
         e.name = other
         if(props.item != "hands"){
             let img = new Image()
-            img.src = `../images/consumables/${e.name}.webp`
+            img.src = `images/consumables/${e.name}.webp`
         }
         
     })
@@ -67,7 +67,7 @@ function Other(props){
             if(index>=10)
                 return
             return <div key={index} className="singleDisplay">
-                <img src={`../images/vouchers/${name}.webp`} alt={`Image of ${name}`} />
+                <img src={`images/vouchers/${name}.webp`} alt={`Image of ${name}`} />
                 <p className={props.item}>{pageList[index].count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>
                 <div className="bar" style={{height: barHeight + '%', background: "rgb(255, 86, 17)"}}></div>
             </div>
@@ -90,7 +90,7 @@ function Other(props){
                 color = "rgb(46,118,253)"
             }
             return <div key={index} className="singleDisplay">
-                <img src={`../images/consumables/${name}.webp`} alt={`Image of ${name}`}/>
+                <img src={`images/consumables/${name}.webp`} alt={`Image of ${name}`}/>
                 <p className={props.item}>{pageList[index].count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>
                 <div className="bar" style={{height: barHeight + '%', background: color}}></div>
             </div>

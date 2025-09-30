@@ -64,7 +64,7 @@ function Deck(props){
         if(index>=10)
             return
         return <div key={index} className="singleDisplay">
-            <img src={`../images/decks/${name}.webp`} alt={`Image of ${name}`}/>
+            <img src={`images/decks/${name}.webp`} alt={`Image of ${name}`}/>
             <p className="decks">{displayValue.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>
             <div className="bar" style={{height: barHeight + '%', background: "rgb(95, 126, 133)"}}></div>
         </div>
