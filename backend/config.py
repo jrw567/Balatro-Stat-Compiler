@@ -5,5 +5,5 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///balatrostatdb.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////balatrostatdb.db'
 db = SQLAlchemy(app, session_options={"autoflush": False})
