@@ -6,4 +6,4 @@ app = Flask(__name__)
 CORS(app)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///balatrostatdb.db'
-db = SQLAlchemy(app)
+db = SQLAlchemy(app, session_options={"autoflush": False})
