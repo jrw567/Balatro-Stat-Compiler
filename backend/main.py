@@ -114,8 +114,8 @@ def readFile(file_number):
         face_cards_played = career["face_cards_played"],
         playing_cards_bought = career["playing_cards_bought"]
     )
-    with db.session.no_autoflush:  
-        db.session.add(new_career)
+    
+    db.session.add(new_career)
 
     q = db.session.query(Career).filter(Career.file_num == TOTAL_FILE)
     if(db.session.query(q.exists()).scalar()):
