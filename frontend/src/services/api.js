@@ -1,4 +1,5 @@
 export const uploadFile = async (previous, data) => {
+    console.log(data)
     if(data.entries().next().value[1].size != 0){
         let entries = [...data.entries()]
         let file_number = entries[1][1]
