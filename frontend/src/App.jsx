@@ -124,6 +124,7 @@ function App() {
             e.append("fileNum", 1)
             e.append("itemType", displayList.item)
             setFileUploaded({bool: true, num: 1})
+            console.log(e)
             formAction(e)}} id="fileForm1">
             <label id="label1" htmlFor="file1">Upload</label>
             <input type="file" name="profile" accept=".jkr" id='file1' onChange={() =>{
