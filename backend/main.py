@@ -63,6 +63,11 @@ def readFile(file_number):
     file_data = file_data.replace("7:", '"7":')
     file_data = file_data.replace("8:", '"8":')
 
+    # possible fix
+
+    i = file_data.index("{")
+    file_data = file_data[i:]
+
     file_data = json.loads(file_data)
 
     #Reads Joker data from file and tallies wins and losses
