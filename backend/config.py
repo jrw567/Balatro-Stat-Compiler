@@ -7,5 +7,3 @@ CORS(app)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///balatrostatdb.db'
 db = SQLAlchemy(app, session_options={"autoflush": False})
-with app.app_context():
-        db.create_all()
