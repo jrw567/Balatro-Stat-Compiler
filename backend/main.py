@@ -67,9 +67,10 @@ def readFile(file_number):
 
     i = file_data.index("{")
     file_data = file_data[i:]
-    return file_data
+    
 
     file_data = json.loads(file_data)
+    return file_data
     
     #Reads Joker data from file and tallies wins and losses
     for joker in file_data["joker_usage"]:
