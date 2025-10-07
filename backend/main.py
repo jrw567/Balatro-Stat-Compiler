@@ -67,6 +67,7 @@ def readFile(file_number):
 
     i = file_data.index("{")
     file_data = file_data[i:]
+    return file_data
 
     file_data = json.loads(file_data)
     
