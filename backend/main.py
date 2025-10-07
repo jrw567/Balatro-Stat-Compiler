@@ -70,7 +70,6 @@ def readFile(file_number):
     
 
     file_data = json.loads(file_data)
-    return file_data
     
     #Reads Joker data from file and tallies wins and losses
     for joker in file_data["joker_usage"]:
@@ -123,6 +122,7 @@ def readFile(file_number):
     )
     
     db.session.add(new_career)
+    return new_career.to_json()
 
     q = db.session.query(Career).filter(Career.file_num == TOTAL_FILE)
     if(db.session.query(q.exists()).scalar()):
