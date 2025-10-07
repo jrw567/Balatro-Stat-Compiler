@@ -4,7 +4,7 @@ export const uploadFile = async (previous, data) => {
         let file_number = entries[1][1]
         let item_type = entries[2][1]
         let response = await fetch(`https://balatro-stat-compiler.onrender.com/upload_file/${file_number}`, {method: "POST", body: data}).then((rsp) => console.log(rsp.json()));
-        document.getElementById(`file${file_number}`).innerHTML = response.message;
+        // document.getElementById(`file${file_number}`).innerHTML = response.message;
         return getList(4, item_type)
     } else {
         document.getElementById(`file1`).innerHTML = "Please upload a Balatro save file";
