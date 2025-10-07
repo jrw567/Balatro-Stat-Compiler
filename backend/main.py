@@ -69,7 +69,7 @@ def readFile(file_number):
     file_data = file_data[i:]
 
     file_data = json.loads(file_data)
-
+    
     #Reads Joker data from file and tallies wins and losses
     for joker in file_data["joker_usage"]:
         wins = 0
@@ -588,6 +588,4 @@ def toggleFile(status, file_number):
     return jsonify({"message": "File toggled successfully"}), 200
 
 if __name__ == "__main__":
-    with app.app_context():
-        db.create_all()
     app.run()
