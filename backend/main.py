@@ -124,7 +124,7 @@ def readFile(file_number):
     db.session.add(new_career)
 
     q = db.session.query(Career).filter(Career.file_num == TOTAL_FILE)
-    return q
+    
     if(db.session.query(q.exists()).scalar()):
         for x in q:
             x.cards_discarded += career["cards_discarded"]
