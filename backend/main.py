@@ -2,7 +2,11 @@ from flask import request, jsonify
 from config import app, db
 from models import Career,Joker,Consumable,Voucher,Hands,Deck
 import zlib, json
-
+@app.route("/")
+def createTables():
+    with app.app_context():
+        db.create_all()
+        
 @app.route("/upload_file/<int:file_number>", methods=["POST"])
 
 #Reads file from given form data and stores it under given file number
@@ -589,7 +593,7 @@ def toggleFile(status, file_number):
 
     return jsonify({"message": "File toggled successfully"}), 200
 
-if __name__ == "__main__":
-    with app.app_context():
-        db.create_all()
-    app.run()
+# if __name__ == "__main__":
+#     with app.app_context():
+#         db.create_all()
+#     app.run()
